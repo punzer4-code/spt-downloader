@@ -1,116 +1,136 @@
-# Full repository audit — `punzer4-code/spt-downloader`
+# Full repository audit — `cepeter-job/spt-downloader` (upstream)
 
 | Field | Value |
 | --- | --- |
 | Audit date | 2026-10-22 |
-| Repository audited | `punzer4-code/spt-downloader` (public fork) |
-| Upstream | `cepeter-job/spt-downloader` |
-| Commit audited | `44969fcd73534153f5b656ec5ee9f5c8f11f42f4` ("Merge pull request #72 …") |
-| Fork vs upstream `main` | **Identical** (`ahead_by: 0, behind_by: 0`) at audit time |
-| CI evidence for this commit | Upstream run [39728441622](https://github.com/cepeter-job/spt-downloader/actions/runs/39728441622) — **success**, 13m06s, all 9 jobs green |
+| Repository audited | **`cepeter-job/spt-downloader`** (upstream, public) |
+| Commit audited | `44969fcd73534153f5b656ec5ee9f5c8f11f42f4` — verified as upstream `main` HEAD at audit time |
+| Audit route | Identical mirror checkout at the same SHA (the `punzer4-code` fork: `ahead 0 / behind 0`) + live GitHub API review of upstream |
+| CI evidence for this commit | Run [39728441622](https://github.com/cepeter-job/spt-downloader/actions/runs/39728441622) — **success**, 13m06s, all 9 jobs green |
 | Auditor method | Static/source audit + GitHub API + CI evidence (see Limitations) |
+| Revision note | This revision re-bases the audit on upstream per request; an earlier same-day draft framed findings around the fork and is superseded. Code-level evidence is unchanged (identical commit); governance findings below are upstream's. |
 
 ## Executive summary
 
 This codebase is, by a wide margin, more disciplined than typical internal
 automation tools: hash-locked dependencies, SHA-pinned Actions, provenance
 attestation, an anti-skip test-evidence system, exact-origin credential
-isolation, and a read-only browsing discipline that is enforced in code rather
-than merely documented. At the audited commit the full Windows test suite,
-dependency audit, packaging, and attestation pipeline are green upstream.
+isolation, and a read-only browsing discipline enforced in code rather than
+merely documented. At the audited commit the full Windows test suite,
+dependency audit, packaging, and attestation pipeline are green, and `main`
+is protected by an active ruleset requiring PRs plus CI/CodeQL checks.
 
-**No critical or high-severity code vulnerabilities were found.** The material
-risks are not in the application code; they are in **repository governance and
-distribution, especially for this fork**:
+**No critical or high-severity *code* vulnerabilities were found.** One
+high-priority *process* finding and a few mediums deserve attention:
 
-1. The fork was created today (2026-10-22) and inherits **none** of upstream's
-   protections: no branch ruleset, Actions not enabled (0 workflows listed),
-   Dependabot alerts disabled, no CodeQL. `main` on the fork is currently
-   unprotected.
-2. **There is no durable release anywhere.** Zero tags, zero GitHub Releases
-   (fork and upstream). The README tells users to download a CI artifact,
-   which expires after **14 days**. The promotion workflow exists but has
-   never produced a published release.
-3. **231 references point at the upstream owner** (`cepeter-job`), including
-   the README download link, the SECURITY.md private-reporting URL, and a
-   source URL embedded in the shipped executable's README by
-   `build_desktop.py`. A fork build would silently direct its users — and
-   its vulnerability reports — to upstream.
+1. **The documented vulnerability-reporting channel is dead.**
+   `SECURITY.md` directs reporters to GitHub's "Report a vulnerability"
+   form, but the API confirms **private vulnerability reporting is disabled
+   (`"enabled": false`)**, and Issues are disabled too. An external
+   reporter following the instructions hits a dead end — for a tool that
+   handles taxpayer data, that is exactly how a real flaw gets posted
+   publicly or never reported. It is a two-minute settings fix.
+2. **There is no durable release.** Zero tags, zero GitHub Releases. The
+   README tells users to download a CI artifact, which expires after
+   **14 days**. The promotion workflow exists but has never published.
+3. **Merge authority is single-operator.** The ruleset requires **0
+   approving reviews**, there is no `CODEOWNERS`, and PR "reviews" sampled
+   are bot comments (`github-code-quality[bot]`) and the author's own
+   comments. The automated gates are excellent — and they are the *only*
+   review. With AI-agent-authored commits already in history, an
+   independent human approval would materially raise assurance.
 
 Overall grades:
 
 | Area | Grade | One-line basis |
 | --- | --- | --- |
 | Application security design | **A** | Origin-pinned credentials, request guard, no write APIs, formula-safe export, PDF custody checks |
+| Disclosure & security process | **D** | SECURITY.md's private channel is disabled; Issues off; email is the only working path |
 | Supply chain / CI | **A** | Hash-locked installs, SHA-pinned actions, SBOM + attestation, pip-audit gate, least-privilege tokens |
 | Test discipline | **A−** | 1,395 test functions, evidence manifests that make silent skips impossible; no coverage metric |
+| Repository governance | **B+** | Active ruleset + required checks, but 0 required approvals, no CODEOWNERS, bus factor 1 |
 | Code maintainability | **B** | Compact style, low annotation (7%), a few very complex functions, no lint/type gate |
-| Documentation | **A−** | 69 Markdown files, 0/376 broken internal links; fork identity not updated |
+| Documentation | **A−** | 69 Markdown files, 0/376 broken internal links; no CONTRIBUTING/CHANGELOG |
 | Release & distribution | **C** | No release, no tag, unsigned EXE, 14-day artifact expiry as the only channel |
-| Fork readiness (this repo) | **D** | Unprotected `main`, Actions off, alerts off, identity still upstream's |
 
 ---
 
-## 1. Repository identity and GitHub posture
+## 1. Repository identity and GitHub posture (upstream)
 
 ### Facts
 
-- `punzer4-code/spt-downloader` is a **public fork** of
-  `cepeter-job/spt-downloader`, created `2026-10-22T05:33:32Z`, 2,110 KB.
-- Description: **empty**. Topics: **none**. Homepage: **none**. Stars/forks: 0.
-- License detected: GPL-3.0 (matches `LICENSE`).
-- Issues: **disabled** (both fork and upstream). Wiki/discussions: disabled.
-  Projects: enabled. `delete_branch_on_merge`: false.
-- Fork branches: only `main`. Upstream branches: `main`,
-  `fix/devops-audit-20261022`, `feat/ui-delivery-completion` (open **draft**
-  PR #71), `feat/tk-accessibility-candidate` (recent runs failing/in-progress
-  — WIP, not in this snapshot).
-- Fork Actions: API returns `total_count: 0` workflows → **Actions are not
-  enabled/initialized on the fork**, so the three workflow files in the tree
-  currently do nothing here.
-- Fork rulesets: `[]` → **`main` has no protection on the fork**. Upstream
-  has an active ruleset ("main melalui PR dan pemeriksaan wajib", id
-  24914050): PR-only, no force-push/deletion, strict required checks
-  `Windows tests and dependency audit` + `CodeQL`, thread resolution
-  required, but `required_approving_review_count: 0` (no human review
-  enforced — reasonable for a solo maintainer, worth knowing).
-- `.github/rulesets/main.json` in the tree documents upstream's ruleset but
-  does **not** activate anything by itself — a fork owner must import/apply
-  it manually in Settings.
-- Dependabot alerts on the fork: **disabled** (API 403 "Dependabot alerts are
-  disabled for this repository"), even though `.github/dependabot.yml` is
-  present and well-formed (weekly, grouped, pip + github-actions).
-- CodeQL upstream runs via GitHub **default setup** (runs named `CodeQL`,
-  `dynamic`) — there is no CodeQL workflow/config in the repository, so the
-  fork has no code scanning and copying upstream's ruleset verbatim would
-  require a `CodeQL` check context that will never report on the fork.
-- Several admin APIs (branch protection, Actions permissions, code-scanning
-  and secret-scanning alert lists) returned `403 Resource not accessible by
-  integration` from this sandbox; per SECURITY.md's own guidance that proves
-  nothing either way and must be checked in the GitHub UI by an admin.
+- `cepeter-job/spt-downloader`: **public**, created `2026-10-09T03:24:20Z`
+  (13 days old at audit), 2,110 KB, GPL-3.0 detected. Description: **null**.
+  Topics: **none**. Homepage: **none**. Stars/watchers: 0. Forks: 1.
+- Issues: **disabled**. Wiki/discussions/downloads: disabled. Projects:
+  enabled. Environments: none. `open_issues_count: 1` is the open draft PR.
+- `main` is **protected** (`protected: true`) by the active ruleset
+  *"main melalui PR dan pemeriksaan wajib"* (id 24914050, created
+  2026-10-12; also codified in `.github/rulesets/main.json`):
+  PR-only merges, deletion and non-fast-forward blocked, stale reviews
+  dismissed on push, review threads must resolve, strict required status
+  checks — `Windows tests and dependency audit` and `CodeQL` — **but
+  `required_approving_review_count: 0` and `require_code_owner_review:
+  false`**, and there is no `CODEOWNERS` file anywhere.
+- Branches at audit time (4): `main` @ `44969fc`;
+  `feat/ui-delivery-completion` (open **draft PR #71**, 11 commits ahead,
+  22 files; checks passing/pending during the audit);
+  `feat/tk-accessibility-candidate` (**55 commits ahead, 42 files**, no PR
+  open, long repeatedly-failing WIP runs); `feat/tk-display-diagnostic`
+  (new diagnostic branch). The merged `fix/devops-audit-20261022` branch
+  had already been auto-deleted — direct evidence the CI branch-cleanup
+  job works as designed.
+- Code scanning: CodeQL **default setup** (dynamic workflows `CodeQL` and
+  `CodeQL - Code Quality`, analyzing Python + Actions, green on `main`
+  and PRs). There is no CodeQL config/workflow in the repository, so the
+  setup is not version-controlled, reviewable, or portable.
+- Dependabot **version updates are active** (`Dependabot Updates` workflow
+  present; `.github/dependabot.yml` weekly/grouped for pip + Actions;
+  PR #56 merged a Dependabot `uv` bump). **Dependabot alerts** status
+  could not be confirmed from this sandbox (API 403). Dependency Graph
+  workflow is active.
+- **Private vulnerability reporting: `"enabled": false`** (confirmed via
+  API — see Executive summary #1). Secret-scanning/push-protection status
+  is not visible to non-admin API access (`security_and_analysis`
+  returns null); SECURITY.md itself instructs the maintainer to verify
+  these in the UI, and this audit cannot close that item.
+- 16 workflows are registered, of which only 3 exist on `main`. The rest
+  are branch-local candidate/diagnostic workflows and at least five
+  explicitly **"(temporary)" evidence workflows still marked active**
+  (`Phase 2 … (temporary)`, `PR20 and PR50 … (temporary)`, `T5 …
+  (temporary)`, …) whose branches are long gone. They can't run without
+  their files, but they clutter the Actions surface and invite confusion.
+- Community profile: **50%** (README + license detected; no contributing
+  file, code of conduct, or templates surfaced by GitHub).
 
 ### Assessment
 
-Upstream's posture is strong; **none of it carries over automatically**.
-Anyone treating this fork as "the same repo, same safety" would be wrong
-until ruleset + Actions + alerts + scanning are deliberately enabled here.
+Branch protection, required checks, and automated dependency updates are
+genuinely in place — this is a well-governed repository for a solo project.
+The gaps are concentrated where solo projects usually have them: nobody
+else must approve, nobody else is notified, and the one documented
+security-contact mechanism was never switched on.
 
 ## 2. History and development process
 
-- **212 commits in 13 days** (2026-10-09 → 2026-10-22), all on the path to
-  the current `main`. Peak days: 58 commits (Oct 13), 43 (Oct 21).
+- **212 commits in 13 days** (2026-10-09 → 2026-10-22) on the path to
+  `main`. Peak days: 58 commits (Oct 13), 43 (Oct 21).
+- **72 PRs: 62 merged, 9 closed unmerged, 1 open (draft #71).** The
+  unmerged set is largely deliberate throwaway evidence PRs labelled
+  "do not merge" — an unusual, rigorous pattern for proving behavior on
+  runners without landing the proving code.
 - Authors: one human maintainer under three identities
-  (`cepeter97@gmail.com` ×117, noreply ×84) — effectively a **single-
-  maintainer project (bus factor = 1)** — plus `ChatGPT Coding Agent` (×8)
-  and `dependabot[bot]` (×3). AI-assisted development is visible and, to its
-  credit, not disguised.
+  (`cepeter97@gmail.com` ×117, noreply ×84) — **bus factor = 1** — plus
+  `ChatGPT Coding Agent` (×8) and `dependabot[bot]` (×3). AI assistance
+  is visible in history rather than disguised. Merged-by is the author
+  in sampled PRs; review objects are `github-code-quality[bot]` comments
+  and author self-comments (e.g. PR #72: 6 review objects, 0 approvals,
+  0 independent humans). The ruleset's thread-resolution requirement at
+  least forces those bot threads to be addressed.
 - Commit style: conventional prefixes (`test` 67, `fix` 49, `feat` 37,
-  `docs` 21, merges 23). Test-first cadence is real, not cosmetic —
-  *test* is the most common commit type.
-- Upstream workflow is PR-based: PRs numbered up to #72 in 13 days,
-  including explicitly-labelled throwaway evidence PRs ("do not merge")
-  that were closed unmerged. The audited HEAD merge commit is
-  GitHub-signed (`verified: true`).
+  `docs` 21, merges 23). *test* being the most common type matches the
+  test-first behavior the CI evidence system enforces. The audited HEAD
+  merge commit is GitHub-signed (`verified: true`).
 - No tags in entire history. No `CHANGELOG.md`; release history must be
   reconstructed from PR titles.
 
@@ -161,40 +181,41 @@ Test-to-production line ratio ≈ **1.7 : 1**.
   which partially offsets the risk.
 - **Style**: deliberately compact (semicolon-joined statements, 237 lines
   >120 chars in production code). Consistent, but raises review cost for
-  new contributors. There is **no formatter/linter/type-checker gate**
-  anywhere (no `pyproject.toml`, `ruff.toml`, pre-commit, or CI step).
-  A one-off Ruff pass (broad ruleset) reports 199 findings in production
-  code — dominated by unsorted imports (65) and blind `except Exception`
-  (52), much of it intentional defensive style — and 664 in tests, where
-  164× F811 is the normal pytest fixture-shadowing pattern (noise).
+  new contributors — which compounds the single-reviewer problem in §1.
+  There is **no formatter/linter/type-checker gate** anywhere (no
+  `pyproject.toml`, `ruff.toml`, pre-commit, or CI step). A one-off Ruff
+  pass (broad ruleset) reports 199 findings in production code — dominated
+  by unsorted imports (65) and blind `except Exception` (52), much of it
+  intentional defensive style — and 664 in tests, where 164× F811 is the
+  normal pytest fixture-shadowing pattern (noise).
 - **Typing/docstrings**: 7% of 609 production functions carry annotations;
   18% have docstrings. `tuple[str, bytes] | None`-style modern syntax is
-  used in newer modules (`credentials.py` is exemplary), older engine
+  used in newer modules (`credentials.py` is exemplary); older engine
   modules are largely unannotated.
 - One genuine lint hit worth fixing: **F821/B023-style late binding** at
   `spt_gui.py:79` — `root.after(250, lambda: settled.set(True))` inside a
   loop that later `del settled`. It works today only because
-  `wait_variable` blocks until the callback fires; it is fragile to
-  reordering. (In self-test code, so impact is test reliability, not user
-  data.)
+  `wait_variable` blocks until the callback fires; fragile to reordering.
+  (Self-test code, so impact is test reliability, not user data.)
 - Dead weight is minimal: 0 TODO/FIXME in the tree, 4 unused imports.
-- **Duplicate binaries**: the three template workbooks in `resources/`
-  are byte-identical copies of `tests/fixtures/*.xlsx` (same MD5s,
-  ~42 KB duplicated). Drift risk if one copy is ever edited without the
-  other; a single source of truth plus a test that the fixture matches the
-  shipped resource would be safer (or vice versa).
+- **Duplicate binaries**: the three template workbooks in `resources/` are
+  byte-identical copies of `tests/fixtures/*.xlsx` (same MD5s, ~42 KB
+  duplicated). Drift risk if one copy is ever edited without the other.
 - Tests use `sys.path.insert` (13 files) instead of packaging/`conftest.py`
   — works, and CI enforces collection parity between Linux and Windows,
-  but it's a smell that will bite if the project is ever packaged.
-- There is **no `pyproject.toml`**: the project is not pip-installable;
-  it runs as scripts from a checkout or as the frozen EXE. That's a
-  legitimate choice for this tool, but it means no standard metadata,
-  no `requires-python`, no console entry points.
+  but it will bite if the project is ever packaged.
+- There is **no `pyproject.toml`**: the project is not pip-installable; it
+  runs as scripts from a checkout or as the frozen EXE. Legitimate for
+  this tool, but means no standard metadata or `requires-python`.
+- The owner/repo string `cepeter-job/spt-downloader` is hard-coded in
+  **231 places**, including the shipped EXE's README via
+  `build_desktop.py`. Correct today; a repository transfer or rename
+  would need a sweep (and any fork inherits upstream pointers verbatim).
 
 ## 4. Security audit
 
-Scope note: this is a tool that handles taxpayer data and a government
-intranet portal (`coretax.intranet.pajak.go.id`, SSO via
+Scope note: this tool handles taxpayer data against a government intranet
+portal (`coretax.intranet.pajak.go.id`, SSO via
 `satu.intranet.pajak.go.id`). It only functions with authorized intranet
 access; nothing in the code attempts to bypass that.
 
@@ -205,56 +226,54 @@ access; nothing in the code attempts to bypass that.
   in the tree are synthetic (`0000000000000001`), precision constants
   (2^53−1), or placeholders. `.gitignore` blocks `*.xlsx/.json/.pdf/.env/
   *.pem/*.key`, browser profiles, cookies, and output folders. The seven
-  tracked `.xlsx` files are layout templates; I inspected their internals —
-  shared strings contain only form labels, `corporate_format.xlsx` even
-  carries `description: "Sanitized corporate layout; no taxpayer values"`.
+  tracked `.xlsx` files are layout templates; their internals contain only
+  form labels (`corporate_format.xlsx` even carries `description:
+  "Sanitized corporate layout; no taxpayer values"`).
 - **Credentials** (`spt_desktop/credentials.py`): Windows Credential
-  Manager only, targets pinned to an exact-origin allowlist, `Login.password`
-  excluded from `repr`, blob size/parity validated, write buffer zeroed
-  after `CredWriteW`. Preferences files store no password/token/cookie.
+  Manager only, targets pinned to an exact-origin allowlist,
+  `Login.password` excluded from `repr`, blob size/parity validated,
+  write buffer zeroed after `CredWriteW`. Preferences store no
+  password/token/cookie.
 - **Auth request guard** (`spt_desktop/auth.py`): a Playwright route
   interceptor aborts any request outside approved origins and any
   cross-origin write; the one allowed code-exchange is consumed-once,
-  deadline-bound, fetched with `max_redirects=0`, and aborted on any
-  redirect/URL drift. Transport exceptions are deliberately swallowed
-  because they can embed auth codes. No CAPTCHA/MFA bypass anywhere;
-  unknown forms fall back to visible manual login.
-- **Read-only discipline**: no `fetch` writes are originated by the tool
-  (the POST references in code *classify and validate* the portal's own
-  UI-generated requests); PDF download is GET-only with
-  `redirect:'error'`, `same-origin`, content-type, `%PDF-`/`%%EOF`
-  signature, size cap, and SHA-256 custody re-verification before
-  publication (`coretax_pdf.py`, `coretax_attachments.py`).
-- **Excel safety**: source text is forced to literal text cells
+  deadline-bound, fetched with `max_redirects=0`, aborted on redirect/URL
+  drift. Transport exceptions are deliberately swallowed because they can
+  embed auth codes. No CAPTCHA/MFA bypass anywhere; unknown forms fall
+  back to visible manual login.
+- **Read-only discipline**: the tool originates no write requests (POST
+  references *classify and validate* the portal's own UI-generated
+  requests); PDF download is GET-only with `redirect:'error'`,
+  same-origin, content-type, `%PDF-`/`%%EOF` signature, size cap, and
+  SHA-256 custody re-verification before publication.
+- **Excel safety**: source text forced to literal text cells
   (`data_type='s'` — anti formula-injection), only HTTP/HTTPS become live
   hyperlinks, >32,767-char cells and precision-unsafe numbers abort the
-  export explicitly rather than truncating/rounding taxpayer figures.
+  export explicitly rather than truncating taxpayer figures.
 - **Diagnostics**: category-constant allowlist logging; URLs, NPWP, form
-  content and raw stdout/stderr never cross into logs (there is even a
-  canary test using `'SYNTHETIC PRIVATE VALUE MUST NOT BE LOGGED'`).
-- **Process safety**: Windows Job Objects with suspended-child containment,
-  15-second forced cleanup, no `shell=True` anywhere, every `subprocess`
-  call uses argv lists with timeouts; no `eval/exec/pickle/yaml.load`;
-  no `verify=False`. Zero bare `except:` in production code.
+  content and raw stdout/stderr never cross into logs (canary test:
+  `'SYNTHETIC PRIVATE VALUE MUST NOT BE LOGGED'`).
+- **Process safety**: Windows Job Objects with suspended-child
+  containment, 15-second forced cleanup, no `shell=True`, argv-list
+  subprocess calls with timeouts; no `eval/exec/pickle/yaml.load`;
+  no `verify=False`; zero bare `except:` in production code.
 - Output publication is paranoid in the good way: scope/fingerprint/race
   re-verification, case-insensitive collision rejection, crash-recovery
-  journal with byte-level custody (`publication_recovery.py`).
+  journal with byte-level custody.
+- No exfiltration paths, telemetry, or phone-home beyond package indexes
+  and the two approved intranet origins.
 
 ### Security findings / residual risks
 
 | # | Severity | Finding |
 | --- | --- | --- |
-| S-1 | Medium (fork) | SECURITY.md's private-report link and maintainer (`@cepeter`) point to upstream. Fork users have **no valid private disclosure channel** for fork-specific issues until this is rewritten and private vulnerability reporting is enabled on the fork. |
-| S-2 | Low (known) | `SPTDownloader.exe` is **not Authenticode-signed**. Honestly documented (README, SECURITY, remediation doc); checksum+attestation mitigate tampering but not publisher trust/SmartScreen friction. |
-| S-3 | Low | The app's only support contact is a **personal government mailbox** hard-coded as the bug-report footer (`sharmila@kemenkeu.go.id`, in `ui_copy.py` and asserted by tests/build). Continuity/privacy risk if the person changes roles; a role/shared mailbox is preferable. |
-| S-4 | Low (accepted, documented) | `run.cmd` auto-reuses a browser debugging endpoint on `127.0.0.1:9235` when one answers. README warns about local-process exposure; loopback-only origin validation exists in code. Acceptable, but on shared/multi-user Windows endpoints another local process could race that port — keep the warning prominent. |
-| S-5 | Info | 52 blind `except Exception` and 10 `try/except/pass` in production code (2 are truly silent-pass). Mostly justified (teardown, transport secrecy) and often commented as such, but each is a place real defects can hide; a lint allowlist would freeze the current set. |
-| S-6 | Info | Tracked `.xlsx`/`.json` files exist despite ignore rules (force-added templates + ruleset). The ignore net works for *new* files, but `git add -f` habits around taxpayer-shaped formats deserve a pre-push secret scan (e.g. gitleaks) — none is configured in-repo. GitHub secret-scanning status on either repo could not be confirmed from this sandbox (API 403). |
-
-No evidence of exfiltration paths, telemetry, update-check phone-home, or
-third-party endpoints beyond package indexes and the two approved
-intranet origins (plus `learn.microsoft.com` documentation links in
-comments).
+| S-1 | **High (process)** | **Private vulnerability reporting is disabled** (`"enabled": false`) while `SECURITY.md` sends reporters to that form; Issues are also disabled. The fallback text ("ask the maintainer via a private channel you already have") only works for insiders. For anyone else the disclosure path is a dead end. *Not a code vulnerability* — but the highest-priority fix in this report. |
+| S-2 | Medium | Alert **delivery** is unverified end-to-end: Dependabot-alerts and secret-scanning toggles aren't confirmable via API from outside, and upstream's own remediation doc lists "verify backlog, routing and actual notification delivery" as outstanding. Combined with bus-factor 1, a critical alert could sit unread. |
+| S-3 | Low (known) | `SPTDownloader.exe` is **not Authenticode-signed**. Honestly documented; checksum+attestation mitigate tampering but not publisher trust/SmartScreen friction. |
+| S-4 | Low | Solo support contact is a **personal government mailbox** hard-coded as the app bug-report footer (`sharmila@kemenkeu.go.id`, asserted by tests/build). Continuity/privacy risk on role change; a role/shared mailbox is preferable. (Note the mailbox owner differs from the repo maintainer handle — support and maintenance are already split across two people with no documented backup for either.) |
+| S-5 | Low (accepted, documented) | `run.cmd` auto-reuses a browser debugging endpoint on `127.0.0.1:9235` when one answers. Loopback-only validation exists and README warns about local-process exposure; on shared Windows endpoints another local process could race that port. |
+| S-6 | Info | 52 blind `except Exception`, 10 `try/except/pass` in production code. Mostly justified and commented (teardown, transport secrecy); a lint allowlist would freeze the current set. |
+| S-7 | Info | Tracked `.xlsx`/`.json` exist despite ignore rules (force-added templates + ruleset). The ignore net works for *new* files; consider an in-repo pre-push/CI secret scan (e.g. gitleaks) so protection doesn't depend solely on GitHub-side toggles whose status is unverified (S-2). |
 
 ## 5. Dependencies and supply chain
 
@@ -262,46 +281,37 @@ comments).
   `openpyxl==3.1.5`. Both are the **latest PyPI releases** at audit date,
   as are `pytest 9.1.1`, `pyinstaller 6.22.3`, `pip-audit 2.10.1`,
   `PyYAML 6.0.3`, `greenlet 3.5.6`, `et-xmlfile 2.0.0`.
-- Slightly behind: `uv 0.13.4` vs `0.13.5` (one patch — Dependabot will
-  propose it; pinning uv is itself deliberate), and transitive `pyee
-  14.0.0` vs `15.0.0` (pyee 15 needs Python ≥3.12 and will arrive with a
-  future Playwright bump; not actionable independently).
+- Slightly behind: `uv 0.13.4` vs `0.13.5` (one patch; Dependabot is
+  active and will propose it), transitive `pyee 14.0.0` vs `15.0.0`
+  (arrives with a future Playwright bump; not independently actionable).
 - Four hash-locked lockfiles (`locks/{runtime,test,build,audit}.txt`,
-  952 lines, every package SHA-256-hashed: 95–378 hashes each), generated
-  by `scripts/update_locks.py` with the pinned uv, drift-checked in CI
-  (`update_locks --check`), and even re-parsed at *runtime* by the
-  desktop bootstrapper, which rejects any pin lacking a hash.
+  every package SHA-256-hashed), generated by `scripts/update_locks.py`
+  with the pinned uv, drift-checked in CI, and re-parsed at *runtime* by
+  the desktop bootstrapper, which rejects any pin lacking a hash.
 - CI runs `pip-audit --strict` over build+test+auditor environments
-  (job green at HEAD; the audit report artifact itself couldn't be
-  downloaded from this sandbox due to egress limits, but the gate is
-  `if: mode != 'docs'` and the job passed).
-- Actions are **all pinned to full commit SHAs** (checkout v7.0.1,
-  upload/download-artifact, setup-uv with binary checksum, attest),
-  `persist-credentials: false` everywhere, workflow-level
-  `permissions: contents: read` with write scopes granted per-job only
-  where needed (`attest`: id-token/attestations; `publish`: contents;
-  `cleanup`: contents+PR-read). The one `curl` (actionlint) is
-  SHA-256-verified before execution.
-- The package job produces a 7-file allowlisted artifact with
-  `build-info.json`, a CycloneDX-style distribution SBOM of the actual
-  packaged bytes, `SHA256SUMS.txt`, then **re-downloads its own artifact
-  by ID and re-verifies** before build-provenance attestation
-  (including attesting the artifact ZIP digest for rollback).
-- Python itself is pinned to the exact patch **CPython 3.14.8 x64/GIL**
-  (`PYTHON_PROFILES`), provisioned by uv-managed installs — no reliance
-  on whatever Python happens to be on PATH. Note the code itself uses
-  no 3.12+ syntax (it byte-compiles under 3.11); the pin is a support
-  policy, not a language requirement. That makes the policy portable
-  but also means every CPython patch CVE forces a coordinated pin bump
-  across README/docs/workflows/`setup.cmd` (many literal `3.14.8`
-  mentions, albeit generated from one source of truth at runtime).
+  (green at HEAD; the report artifact's bytes couldn't be downloaded
+  from this sandbox due to egress limits, but the gate ran and passed).
+- Actions **all pinned to full commit SHAs**, `persist-credentials:
+  false` everywhere, workflow-level `contents: read` with write scopes
+  per-job only (`attest`, `publish`, `cleanup`). The one `curl`
+  (actionlint) is SHA-256-verified before execution.
+- The package job emits a 7-file allowlisted artifact with
+  `build-info.json`, a distribution SBOM of the actual packaged bytes,
+  and `SHA256SUMS.txt`, then **re-downloads its own artifact by ID and
+  re-verifies** before build-provenance attestation (including the
+  artifact ZIP digest for rollback).
+- Python pinned to exact patch **CPython 3.14.8 x64/GIL** via uv-managed
+  installs. The code uses no 3.12+ syntax (byte-compiles under 3.11), so
+  the pin is support policy, not language need — every CPython patch
+  CVE will force a coordinated bump, which the single
+  `PYTHON_PROFILES` source of truth makes mechanical.
 
-This is supply-chain practice well above the norm for a project this size.
+Supply-chain practice here is well above the norm for a project this size.
 
 ## 6. Testing
 
-- **1,395 test functions** in 175 `test_*.py` files with 631
-  `parametrize` decorators (static count; collected items are higher).
+- **1,395 test functions** in 175 `test_*.py` files, 631 `parametrize`
+  decorators (static count; collected items are higher).
 - Two workloads: a reviewed **portable** subset (23 files) on Linux and
   the **full** suite on Windows (Tk, Credential Manager, Job Objects,
   real Edge against local synthetic HTML fixtures — never live taxpayer
@@ -310,162 +320,159 @@ This is supply-chain practice well above the norm for a project this size.
   *all collected* node IDs and per-phase outcomes; the package job
   refuses to build unless portable+Windows collectors agree on the full
   inventory, shards exactly tile it, and **every test passed setup/call/
-  teardown exactly once — skips and xfails fail the gate**
-  (`scripts/ci_tests.py`). This makes the classic "green because tests
-  silently didn't run" failure mode structurally impossible.
-- HEAD commit evidence (upstream run 39728441622): portable 49s,
-  Windows shards 10m30s/11m04s, dependency audit 27s, package 1m01s,
-  attestation 18s — all green. Recent `main` history is mostly green
-  (one failure at PR #66's merge run and one cancelled run among the
-  last 12 — normal for this velocity, and the required-check gate is on
-  PRs; note a red *post-merge* main run did occur once, worth a
-  "main must stay green" alert, which SECURITY.md assigns to the
-  maintainer manually).
-- Gaps: **no coverage measurement or threshold** (`.coverage` is
-  gitignored but nothing produces it in CI), no mutation/fuzz testing,
-  and per project policy **no live acceptance** is automated —
-  `docs/penerimaan-manual.md` keeps that a human, authorized activity.
-  Given the evidence-manifest rigor, adding a coverage *report* (not
-  necessarily a hard gate) is cheap, missing signal.
-- Per `AGENTS.md`, test execution is GitHub-runner-only; this audit
-  therefore did **not** run pytest locally and relies on the CI evidence
-  above (plus local syntax compilation of every file, which passed).
+  teardown exactly once — skips and xfails fail the gate**. "Green
+  because tests silently didn't run" is structurally impossible.
+- HEAD evidence (run 39728441622): portable 49s, Windows shards
+  10m30s/11m04s, audit 27s, package 1m01s, attestation 18s — all green.
+  Recent `main` runs are mostly green (one failure — PR #66's post-merge
+  run — and one cancellation among the last 12). Note the asymmetry:
+  required checks gate the *PR*; a red *post-merge* `main` run has
+  happened once, and nothing automated escalates it (SECURITY.md assigns
+  watching `main` failures to the maintainer).
+- Gaps: **no coverage measurement or threshold** in CI, no mutation/fuzz
+  testing, and by policy no automated live acceptance
+  (`docs/penerimaan-manual.md`). A coverage *report* artifact is cheap,
+  missing signal given how much else is measured.
+- Per `AGENTS.md`, test execution is GitHub-runner-only; this audit did
+  not run pytest locally and relies on the CI evidence above (plus local
+  syntax compilation of every file, which passed).
 
 ## 7. CI/CD workflows
 
+Workflows on `main`:
+
 | Workflow | Trigger | Notes |
 | --- | --- | --- |
-| `windows-build.yml` (543 lines) | push/PR to `main`, dispatch, weekly Mon 03:17 UTC | route → portable + Windows shards + audit → package → attest → `validate` gate → branch cleanup. Docs-only changes take a short route (`ci_route`), defaulting to full on any doubt. Per-main-push concurrency slots prevent docs pushes cancelling code builds. |
-| `release-promotion.yml` (125) | manual dispatch only | Verifies an exact prior artifact (run/attempt/commit/Python/artifact-ID + provenance) and only publishes with explicit `publish=true` on `main`; never overwrites an existing tag. **Never yet used to publish.** |
-| `windows-shard-benchmark.yml` (178) | manual dispatch only | Performance comparison harness, isolated from the required check. |
+| `windows-build.yml` (543 lines) | push/PR to `main`, dispatch, weekly Mon 03:17 UTC | route → portable + Windows shards + audit → package → attest → `validate` gate → branch cleanup. Docs-only short route defaults to full on doubt. Per-push concurrency slots stop docs pushes cancelling code builds. |
+| `release-promotion.yml` (125) | manual dispatch only | Verifies exact prior artifact + provenance; publishes only with explicit `publish=true` on `main`; never overwrites a tag. **Never yet used to publish.** |
+| `windows-shard-benchmark.yml` (178) | manual dispatch only | Sharding performance harness, isolated from the required check. |
+
+Plus branch-local workflows on WIP branches (`launcher-candidate.yml`,
+`ui-delivery-diagnostic.yml`, display-diagnostic) and the dynamic CodeQL
+pair.
 
 Observations:
 
-- The `cleanup` job (`contents: write`) auto-deletes merged branches via
-  `scripts/cleanup_branches.py`, guarded to heads already contained in
-  the tested `main` — and a same-day fix (in the audited commit) ensures
-  stale-branch cleanup can't fail a verified build. Still, it is the
-  broadest standing write permission in the pipeline; keep it scoped.
+- **CI volume/cost**: of the last 100 runs, 44 succeeded, **42 failed**,
+  10 cancelled — driven overwhelmingly by the candidate branch
+  (`Isolated launcher candidate` alone = 40 of 100 runs, several failing
+  after 19–25 minutes). This is test-first development executed on
+  Windows runners (the AGENTS.md runner-only policy *requires* it), so
+  red WIP runs are expected — but the burn rate is high, four heavyweight
+  runs were in flight simultaneously during this audit, and if this repo
+  ever moves to a metered/private setting the Windows-minutes bill will
+  be the first shock. The portable/docs routing already helps; pushing
+  candidate iterations less frequently (or squash-and-push) would too.
+- **WIP divergence**: `feat/tk-accessibility-candidate` is 55 commits /
+  42 files ahead with no PR and a long red streak. The longer it lives,
+  the more its eventual merge (or abandonment) costs; landing it in
+  slices behind the usual PR gates would de-risk it. Draft PR #71
+  (11 commits) is the healthier pattern.
+- The `cleanup` job (`contents: write`) auto-deletes merged branches,
+  guarded to heads contained in the tested `main` — observed working
+  during this audit. It remains the broadest standing write permission;
+  keep it scoped as-is.
 - Artifact retention is uniformly **14 days**, including the only
-  user-facing download. Combined with §1's "no releases", a user
-  following the README three weeks after the last `main` push may find
-  every link dead. This is the single most user-visible defect found.
+  user-facing download (§8). Most user-visible defect in the delivery
+  chain.
 - Caches are save-gated to `main` pushes, keyed by lockfile globs, with
-  a cold mode for honest timing — solid cache-poisoning hygiene.
-- Everything is useless **on this fork until Actions are enabled**, and
-  the `attest`/`cleanup` jobs additionally need the fork's Actions
-  permissions to allow OIDC/attestations and contents-write.
+  an honest cold mode — solid cache-poisoning hygiene.
+- Stale "(temporary)" workflow registrations (§1) should be disabled in
+  the Actions UI; they cannot be removed from git because their files
+  are already gone from every branch.
 
-## 8. Documentation
+## 8. Documentation and release/distribution
 
-- 69 Markdown files (~7.6k lines): user README (Indonesian, thorough),
+- 69 Markdown files (~7.6k lines): Indonesian user README (thorough),
   contributor index, architecture/output contracts, CI & release,
   troubleshooting, privacy maintenance, manual acceptance, UI/UX
-  baselines, plus a `docs/superpowers/` archive of specs/plans/evidence
-  and dated internal audits (`docs/audits/`). **0 of 376 internal
-  relative links are broken.**
+  baselines, `docs/superpowers/` spec/plan/evidence archive, dated
+  internal audits. **0 of 376 internal relative links broken.**
 - The docs are unusually honest about limits: unsigned EXE, non-atomic
   multi-file publication, "COMPLETE means the confirmed subset",
-  synthetic tests ≠ live acceptance. The previous internal DevOps audit
-  and its remediation map (2026-10-22, in the audited commit) list five
-  controls still requiring out-of-repo evidence — Authenticode, first
-  durable release, admin alert verification, endpoint ACL/encryption
-  validation, live acceptance. This audit concurs with all five.
-- Gaps: no `CONTRIBUTING.md` file (guidance lives in `docs/` + AGENTS.md
-  — GitHub won't surface it in the PR flow), no `CODE_OF_CONDUCT.md`,
-  no PR/issue templates (issues are disabled anyway), no `CHANGELOG.md`.
-  Upstream community profile: 50%.
-- Language mix: user-facing docs in Indonesian, code comments mixed
-  ID/EN, security-critical comments often in English. Appropriate for
-  the audience; external contributors face a language barrier that is
-  presumably intentional.
-- **Fork identity**: 231 `cepeter-job` references, 0 `punzer4-code`.
-  Beyond docs, `build_desktop.py:118` embeds the upstream URL into the
-  shipped `README.txt`. For a pure mirror this is correct; for an
-  independent fork it is a trust/support bug (see S-1).
+  synthetic tests ≠ live acceptance. The internal DevOps audit +
+  remediation (2026-10-22, in the audited commit) lists five controls
+  still needing out-of-repo evidence — Authenticode, first durable
+  release, admin alert verification, endpoint ACL/encryption validation,
+  live acceptance. **This audit concurs with all five**, and §4 S-1/S-2
+  show item three is not merely unverified but currently off.
+- Gaps: no `CONTRIBUTING.md` *file* (guidance lives in `docs/` +
+  AGENTS.md, which GitHub doesn't surface in the PR flow), no
+  `CODE_OF_CONDUCT.md`, no PR template, no `CHANGELOG.md`. Repo has no
+  description/topics — discoverability is zero, which may be intentional.
+- **Distribution**: PyInstaller `--onefile --windowed --noupx` GUI +
+  bundled pinned `uv.exe` provisioning an isolated worker at
+  `%LOCALAPPDATA%\SPTDownloader`; Windows 10/11 x64 only, clearly stated.
+  First run needs package-index access (intranet proxy/TLS preserved by
+  `bootstrap_environment`). But publication stops at "CI artifact with
+  14-day retention": no tag has ever been cut, `release-promotion.yml`
+  has never published, and the README's download instructions will
+  silently rot three weeks after any pause in `main` activity. The
+  machinery to fix this is built, tested, and unused.
 
-## 9. Packaging and platform
+## 9. Legal and data-protection posture
 
-- PyInstaller `--onefile --windowed --noupx`, explicit `--add-data`
-  allowlist (= `WORKER_FILES` + license + build-info), Playwright/
-  openpyxl/pytest excluded from the GUI binary, bundled pinned `uv.exe`
-  provisions the isolated worker at `%LOCALAPPDATA%\SPTDownloader`.
-- Windows 10/11 x64 only, by design and clearly stated. The CLI path
-  (`setup.cmd`/`run.cmd`) enforces uv 0.13.4 + managed CPython 3.14.8
-  rather than mutating system Python.
-- First-run requires package-index network access — inside a restricted
-  government intranet this is the most likely deployment friction;
-  proxy/TLS env is preserved by `bootstrap_environment`, and failures
-  surface as retryable setup errors rather than partial installs.
-
-## 10. Legal and data-protection posture
-
-- GPL-3.0 `LICENSE` present and detected by GitHub; README and the
-  shipped artifact carry it. **No per-file license/SPDX headers** (0/45
-  production files) — not required, but headers protect the notice when
-  files are copied out of context, which matters for GPL compliance of
-  *downstream* forks (including this one).
-- The GUI states "for personal use only"; AGENTS.md codifies "commit
+- GPL-3.0 `LICENSE` present and detected; README and shipped artifact
+  carry it. **No per-file license/SPDX headers** (0/45 production
+  files) — worth adding so the notice survives files copied out of
+  context (forks included).
+- GUI states "for personal use only"; AGENTS.md codifies "commit
   synthetic data only", which history confirms. Workbooks/checkpoints
   are documented as confidential, unencrypted, local-only.
-- As a public fork of a tool targeting a tax-authority intranet, the
-  repo inevitably publishes internal hostnames and portal paths. That
-  ship sailed upstream (also public); the fork adds no new exposure,
-  but the fork owner should consciously re-confirm that public is the
-  intended visibility for their copy.
+- The public repository necessarily publishes intranet hostnames and
+  portal paths. That is an existing, presumably accepted exposure; it
+  is noted here only so it remains a conscious decision.
 
-## Findings register (prioritized)
+## Findings register (prioritized, upstream)
 
 | ID | Sev | Area | Finding |
 | --- | --- | --- | --- |
-| F-1 | **Medium** | Fork governance | Fork `main` is unprotected: no ruleset applied, Actions disabled (0 workflows), Dependabot alerts disabled, no code scanning. Upstream protections do not inherit. |
-| F-2 | **Medium** | Distribution | No tags/releases anywhere; sole download channel is a CI artifact that expires in 14 days. README instructions silently rot. Promotion workflow exists but unused. |
-| F-3 | **Medium** | Fork identity | 231 upstream-owner references incl. SECURITY reporting URL, README download link, and URL embedded in the built EXE's README. Fork users/reporters are directed to upstream. |
-| F-4 | Low | People | Bus factor 1; sole support/security contact is one personal government mailbox hard-coded in the UI and build assertions. |
-| F-5 | Low | Code quality | No lint/format/type/coverage gates; 53 functions exceed McCabe 15 (max 61); 7% annotation coverage. High test volume mitigates but doesn't replace these signals. |
-| F-6 | Low | Scanning portability | CodeQL is GitHub default-setup upstream, not in-repo config; fork has none, and upstream's ruleset requires its check context. |
-| F-7 | Low | Hygiene | 3 template workbooks duplicated byte-for-byte in `resources/` and `tests/fixtures/` (drift risk); tests use `sys.path.insert`; no `pyproject.toml`/packaging metadata. |
-| F-8 | Low | Robustness | Late-binding lambda at `spt_gui.py:79` (F821) in self-test; 52 blind excepts (mostly justified) with no lint allowlist to freeze them. |
-| F-9 | Low (known) | Trust | Executable unsigned (Authenticode pending per upstream remediation doc). |
-| F-10 | Info | Community | Issues disabled on fork+upstream; no CONTRIBUTING/CHANGELOG/templates; repo description/topics empty on the fork. |
-| F-11 | Info | Freshness | `uv` one patch behind (0.13.4→0.13.5); transitive `pyee` one major behind via Playwright pin. Everything else is latest. |
-| F-12 | Info | Process | One red post-merge `main` run in recent history (PR #66 era) — required checks gate PRs, but `main` health after merge relies on maintainer attention. |
+| U-1 | **High (process)** | Disclosure | Private vulnerability reporting disabled while SECURITY.md directs reporters to it; Issues also disabled. External disclosure path is a dead end. (§1, §4 S-1) |
+| U-2 | **Medium** | Distribution | No tags/releases; sole download channel expires in 14 days; promotion workflow unused. (§8) |
+| U-3 | **Medium** | Governance | 0 required approvals + no CODEOWNERS + self-merge; bot/self comments are the only "review". Automated gates carry the full assurance load, incl. for AI-authored commits. (§1–2) |
+| U-4 | Medium | Security ops | Dependabot-alert / secret-scanning toggle state and alert *delivery* unverified (upstream's own remediation leaves this open); bus factor 1. (§4 S-2) |
+| U-5 | Low | CI efficiency | 42/100 recent runs failed (candidate-branch iterations, several 19–25 min); 55-commit unmerged candidate branch raises integration cost. (§7) |
+| U-6 | Low | Governance hygiene | ≥5 stale "(temporary)" workflows still active in the Actions registry; CodeQL is default-setup, not versioned config. (§1, §7) |
+| U-7 | Low | Code quality | No lint/format/type/coverage gates; 53 functions > McCabe 15 (max 61); 7% annotation. Mitigated by test volume. (§3, §6) |
+| U-8 | Low | People | Personal government mailbox as sole in-app support contact; maintainer ≠ support contact; no documented backup for either. (§4 S-4) |
+| U-9 | Low (known) | Trust | Executable unsigned (Authenticode pending in upstream roadmap). |
+| U-10 | Info | Community | Issues disabled; no CONTRIBUTING file/CHANGELOG/CoC/PR template; no description/topics; community profile 50%. |
+| U-11 | Info | Portability | `cepeter-job/spt-downloader` hard-coded ×231 incl. shipped binary README; transfer/rename would need a sweep. |
+| U-12 | Info | Hygiene | `uv` one patch behind; transitive `pyee` behind; duplicate fixture binaries; `sys.path.insert` in tests; `spt_gui.py:79` late-binding lambda; one historic red post-merge `main` run with no automated escalation. |
 
-## Recommendations
+## Recommendations (for the upstream maintainer, in order)
 
-**For the fork owner (`punzer4-code`), in order:**
-
-1. **Decide the fork's purpose** — mirror, contribution staging, or
-   independent line — because it determines everything below. If it's a
-   mirror, keep upstream identity and just enable sync. If independent:
-2. **Turn on the safety net**: Settings → enable Actions; import
-   `.github/rulesets/main.json` as an active ruleset (adjust the CodeQL
-   context per #4); enable Dependabot alerts + secret scanning/push
-   protection + private vulnerability reporting; confirm notification
-   routing actually reaches a human.
-3. **Fix identity**: replace `cepeter-job` → `punzer4-code` in README,
-   SECURITY.md (reporting URL + maintainer), and `build_desktop.py`'s
-   embedded README; set repo description/topics. Decide the support
-   mailbox that replaces the hard-coded footer (requires touching
-   `ui_copy.py` + its asserting tests).
-4. **Add code scanning as code**: commit a CodeQL workflow (or enable
-   default setup on the fork) so the ruleset's required check can pass.
-5. **Publish one durable release**: run `release-promotion.yml` with
-   `publish=true` against a verified `main` artifact (e.g. upstream run
-   39728441622's artifact lineage, or the fork's own first green run),
-   then point the README at the Release instead of a 14-day artifact.
-6. **Cheap quality gates**: add a `ruff.toml` with a *ratchet* config
-   (current findings baselined, new violations fail), plus a coverage
-   report artifact in the portable job. Fix the `spt_gui.py:79` lambda
-   (`lambda s=settled: s.set(True)`). Deduplicate the fixture workbooks.
-7. **Keep upstream in sync deliberately**: the upstream moves fast
-   (72 PRs/13 days, draft PR #71 pending). Either enable the fork's
-   "Sync fork" cadence or accept divergence explicitly — silent drift
-   is how forks inherit unpatched behavior near tax deadlines.
-
-**Worth sending upstream as contributions:** the Ruff baseline, fixture
-deduplication, coverage reporting, and per-file SPDX headers — all are
-fork-neutral improvements.
+1. **Enable private vulnerability reporting now** (Settings → Security),
+   then click through SECURITY.md as an outsider to prove the path works.
+   Decide whether Issues stay off; if so, make the email path explicit
+   as the public alternative. *(Fixes U-1.)*
+2. **Verify and record the alert chain**: Dependabot alerts, secret
+   scanning + push protection, and an actual test notification; note the
+   date/result per SECURITY.md's own checklist. Name a backup human.
+   *(U-4, U-8.)*
+3. **Cut the first durable release** with `release-promotion.yml`
+   (`publish=true` against run 39728441622's verified artifact) and
+   point the README at the Release. Start a `CHANGELOG.md` at the same
+   tag. *(U-2.)*
+4. **Add one independent approval**: a `CODEOWNERS` file plus
+   `required_approving_review_count: 1` with a second human (even if
+   frequently the support-contact owner), at minimum for
+   `spt_desktop/auth.py`, `credentials.py`, `output*.py`, workflows.
+   If headcount makes this impossible, document that explicitly as an
+   accepted risk in SECURITY.md. *(U-3.)*
+5. **Tame WIP mechanics**: disable the stale "(temporary)" workflows in
+   the UI; land `feat/tk-accessibility-candidate` in slices or retire
+   it; consider `concurrency: cancel-in-progress` for candidate-branch
+   push workflows to cut Windows minutes. *(U-5, U-6.)*
+6. **Version the CodeQL config** (advanced setup workflow in-repo) so
+   queries/languages are reviewable and survive transfer/forking.
+   *(U-6.)*
+7. **Cheap quality ratchets**: baseline `ruff.toml` (freeze current
+   findings, fail on new), coverage *report* artifact in the portable
+   job, fix `spt_gui.py:79` (`lambda s=settled: s.set(True)`), dedupe
+   fixture workbooks, add SPDX headers. *(U-7, U-12, §9.)*
+8. **Escalate red `main` automatically** (failed-workflow notification
+   to a watched channel), since required checks only gate PRs. *(U-12.)*
 
 ## Methodology and limitations
 
@@ -476,38 +483,39 @@ tracked-binary (XLSX) content inspection; dangerous-API greps
 function length, McCabe via Ruff 0.17.1); import-reachability vs
 `WORKER_FILES`; lockfile↔requirements consistency; PyPI latest-version
 comparison (2026-10-22); workflow permission/pin review; Markdown
-internal-link validation (376 links); GitHub API review of both repos
-(fork relation, branches, rulesets, runs, PRs, community profile).
+internal-link validation (376 links); live GitHub API review of upstream
+(ruleset detail, PVR status, branches/PRs/reviews/run statistics,
+community profile), confirming upstream `main` == audited SHA.
 
 Not performed, by policy or sandbox limits: **no local test execution**
-(`AGENTS.md` reserves execution evidence to GitHub runners — upstream
-run 39728441622 for this exact commit is the execution evidence);
-managed CPython 3.14.8 could not be downloaded in this sandbox (TLS
-issuer rejection), so local checks used Python 3.11 AST/compilation
-only; CI artifact/log *bytes* could not be downloaded here (storage
-host outside the sandbox egress allowlist), so artifact contents are
-assessed from workflow definitions + job results, not byte inspection;
-several GitHub admin APIs returned 403 to this integration (branch
-protection detail, secret/code-scanning and Dependabot alert *lists*,
-CodeQL default-setup) — the fork owner should verify those toggles in
-Settings → Security; no live Coretax access was used or attempted, and
-endpoint/ACL/encryption claims remain, as upstream's own remediation
-doc states, matters for on-site validation.
+(`AGENTS.md` reserves execution evidence to GitHub runners — run
+39728441622 for this exact commit is the execution evidence); WIP-branch
+code (`feat/*`) is outside the audited tree and was assessed only for
+process risk; CI artifact/log *bytes* could not be downloaded here
+(storage host outside egress allowlist), so artifact contents are assessed
+from workflow definitions + job results; several admin APIs returned 403
+to this integration (secret/code-scanning & Dependabot alert lists,
+CodeQL default-setup detail, Actions permissions) — items S-2/U-4 remain
+for an admin to close in Settings; no live Coretax access was used or
+attempted; endpoint ACL/encryption/restore validation remains, as
+upstream's own remediation doc states, an on-site activity.
 
 ## Appendix — key metrics
 
 | Metric | Value |
 | --- | --- |
+| Repo age / commits | 13 days / 212 commits on `main` path |
+| PRs | 72 total: 62 merged, 9 closed-unmerged, 1 open draft (#71) |
+| Independent human approvals (sampled merged PRs) | 0 (bot + self comments only) |
 | Tracked files | 353 |
 | Production Python | 57 files / 18,376 LOC |
-| Test Python | 202 files / 31,855 LOC |
-| Test functions (static) | 1,395 (+631 parametrize) in 175 files |
+| Test Python | 202 files / 31,855 LOC; 1,395 test functions (+631 parametrize) |
 | Docs | 69 files / ~7,568 lines; 0/376 broken internal links |
-| Commits / period | 212 / 2026-10-09 → 2026-10-22 |
-| Dependencies | 2 direct runtime; 6 pkgs in runtime lock; all hash-pinned; all latest except uv (−1 patch) & transitive pyee |
+| Dependencies | 2 direct runtime; all latest except `uv` (−1 patch), transitive `pyee` |
 | Largest modules | `coretax_browser.py` 1,579; `spt_desktop/app.py` 1,013 |
 | Max function complexity | `collect_inventory` McCabe 61 |
-| TODO/FIXME in tree | 0 |
-| Secrets found (tree+history) | 0 |
+| TODO/FIXME; secrets (tree+history) | 0; 0 |
 | Tags / Releases | 0 / 0 |
-| HEAD CI (upstream) | run 39728441622, success, 13m06s, 9/9 jobs |
+| Private vulnerability reporting | **disabled** |
+| Recent runs (last 100) | 44 success / 42 failure / 10 cancelled (WIP-branch driven) |
+| HEAD CI (`main` @ 44969fc) | run 39728441622, success, 13m06s, 9/9 jobs |
