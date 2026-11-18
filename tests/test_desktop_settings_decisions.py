@@ -6,7 +6,7 @@ import tkinter as tk
 import pytest
 
 from spt_desktop import app as gui
-from support_gui import Controller, button, widgets
+from support.support_gui import Controller, button, widgets
 
 
 @pytest.fixture

@@ -6,7 +6,7 @@ import pytest
 
 import coretax_browser as driver
 from coretax_json_capture import DetailJsonCapture
-from support_browser_protocol import (DETAIL_URL, LIST_URL, META, RECORD,
+from support.support_browser_protocol import (DETAIL_URL, LIST_URL, META, RECORD,
     DetailPage, SourcePage, Table, response, run_fixture)
 from test_list_restore_recovery import collector as collector
 
@@ -139,7 +139,7 @@ def test_reused_group_rejects_source_document_changed_during_prior_popup(
 
 @pytest.mark.parametrize('kind', ['replacement', 'route'])
 def test_json_view_preparation_custody_change_prevents_the_click(tmp_path, monkeypatch, kind):
-    from support_json_hybrid import Scenario
+    from support.support_json_hybrid import Scenario
     scenario = Scenario(tmp_path, monkeypatch, mode='json-first', tax_kind='Fixture')
     original = DetailJsonCapture.begin_readonly_view
     preparations = []

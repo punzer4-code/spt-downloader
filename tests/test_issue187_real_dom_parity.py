@@ -12,8 +12,8 @@ import pytest
 
 import coretax_browser as browser_driver
 import coretax_json as json_adapter
-import support_json_corpus as corpus
-from support_isolated_browser import browser as browser, context as context
+import support.support_json_corpus as corpus
+from support.support_isolated_browser import browser as browser, context as context
 
 
 ROWS = (

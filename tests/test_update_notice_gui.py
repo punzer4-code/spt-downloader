@@ -5,7 +5,7 @@ import pytest
 
 from spt_desktop import app as gui
 from spt_desktop import update_notice
-from support_gui import Controller, button, widgets
+from support.support_gui import Controller, button, widgets
 
 
 def test_production_gui_schedules_automatic_check_on_first_event_loop(

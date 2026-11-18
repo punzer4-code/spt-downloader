@@ -8,11 +8,11 @@ from openpyxl import load_workbook
 import coretax
 import coretax_exporter as exporter
 from spt_desktop import output
-from support_financial_publication import PDF, CHANGED_PDF, declare_pdf
-from support_runs import model_run
+from support.support_financial_publication import PDF, CHANGED_PDF, declare_pdf
+from support.support_runs import model_run
 
 
-from support_financial_publication import (
+from support.support_financial_publication import (
     legacy_export, physical_bytes
 )
 

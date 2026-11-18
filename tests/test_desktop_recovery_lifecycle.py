@@ -10,8 +10,8 @@ import pytest
 import coretax
 import coretax_browser
 from spt_desktop import worker
-from support_runs import fixture_run
-from support_selected_capture import synthetic_browser
+from support.support_runs import fixture_run
+from support.support_selected_capture import synthetic_browser
 
 
 def _cancelled_capture(tmp_path, monkeypatch, fault):

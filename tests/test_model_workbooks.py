@@ -17,7 +17,7 @@ TAX_SCOPES = [
     ('PPN', 'Januari 2025', 'SPT Masa PPN'),
     ('PPh Pasal 22', 'Januari 2025', None),
 ]
-from support_runs import (
+from support.support_runs import (
     MODELS, model_run
 )
 

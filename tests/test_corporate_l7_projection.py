@@ -6,7 +6,7 @@ import importlib.util
 import pytest
 
 from coretax_json import _UnsupportedMetadata, _corporate_json
-from support_json_corpus import Number, wire
+from support.support_json_corpus import Number, wire
 
 
 ROOT = 'CalculationOfFiscalLossCompensation'

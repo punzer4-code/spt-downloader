@@ -2,9 +2,9 @@
 from copy import deepcopy
 import pytest
 import coretax_browser as driver
-from support_financial_browser import browser as browser
-from support_l8_spans import html, source
-from support_templates import section
+from support.support_financial_browser import browser as browser
+from support.support_l8_spans import html, source
+from support.support_templates import section
 from test_corporate_compact_export import export
 
 

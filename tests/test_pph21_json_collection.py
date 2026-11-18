@@ -8,10 +8,10 @@ import pytest
 
 import coretax_browser as driver
 import coretax_pph21_observer as observer
-import support_browser_protocol as protocol
-from support_json_hybrid import Scenario
-from support_json_network import Request
-from pph21_projection_fixture import case as native_case
+import support.support_browser_protocol as protocol
+from support.support_json_hybrid import Scenario
+from support.support_json_network import Request
+from support.pph21_projection_fixture import case as native_case
 from masa_json_fixtures import SCOPE, TAXPAYER
 
 

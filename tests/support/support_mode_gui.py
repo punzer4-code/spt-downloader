@@ -43,7 +43,7 @@ def button(dialog, caption):
 @pytest.fixture
 def window(tmp_path, monkeypatch):
     from spt_desktop import app as gui
-    from support_gui import Controller
+    from support.support_gui import Controller
     class ModeController(Controller):
         def start(self, npwp, year, browser, headless, *, detail_source='dom'):
             self.exports.append((npwp, year, browser, headless, detail_source))

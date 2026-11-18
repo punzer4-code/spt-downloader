@@ -5,7 +5,7 @@ from coretax_json import JsonSafetyError, ORIGIN
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
 from coretax_masa_json import adapt_masa_detail
 from masa_json_fixtures import packet
-from support_json_network import Context
+from support.support_json_network import Context
 from test_json_capture import Page, DETAIL_URL, SCOPE
 from test_pph21_reference_capture import RAW, exchange, selected
 from test_unifikasi_json_identity import source_case

@@ -8,7 +8,7 @@ from copy import deepcopy
 import pytest
 
 from coretax_json import _corporate_json, _UnsupportedMetadata
-from support_masa_native import project
+from support.support_masa_native import project
 
 # Independently transcribed from mapResponseToFormData, reviewed against later
 # setters/subscriptions. Last column is the displayed nullish value, not a value

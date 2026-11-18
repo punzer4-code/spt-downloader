@@ -9,7 +9,7 @@ import json
 import pytest
 
 from coretax_json import JsonSafetyError
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 from test_json_hybrid_native import NativeFixture, browser  # noqa: F401
 
 

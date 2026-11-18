@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import coretax_browser as browser
 import coretax_masa_observer as observer
-from masa_projection_fixture import native_case
+from support.masa_projection_fixture import native_case
 from masa_json_fixtures import SCOPE
 
 

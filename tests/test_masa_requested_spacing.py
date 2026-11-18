@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 from openpyxl import load_workbook
 
-from support_templates import section, source_appendix, export_ppn, assert_format
+from support.support_templates import section, source_appendix, export_ppn, assert_format
 from test_unifikasi_clean_percent import export, table
 
 

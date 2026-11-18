@@ -3,7 +3,7 @@ import json
 import pytest
 import coretax_browser as browser
 from spt_desktop import diagnostics as d
-from support_json_hybrid import Scenario
+from support.support_json_hybrid import Scenario
 
 
 def logs(root):

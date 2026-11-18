@@ -1,7 +1,7 @@
 """Sanitized operator layout behavior through saved public exports."""
 from copy import deepcopy
 import pytest
-from support_templates import section
+from support.support_templates import section
 from test_corporate_compact_export import export
 
 

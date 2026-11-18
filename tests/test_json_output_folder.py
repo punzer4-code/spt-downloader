@@ -10,8 +10,8 @@ import pytest
 import coretax
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
 from spt_desktop import output
-from support_json_network import Context, exchange
-from support_runs import model_run
+from support.support_json_network import Context, exchange
+from support.support_runs import model_run
 from test_json_capture import Page, LIST_URL, DETAIL_URL, RECORD, RAW
 
 

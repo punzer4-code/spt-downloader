@@ -63,8 +63,8 @@ def test_worker_counts_verified_details_once_and_keeps_partial_below_100(monkeyp
     from contextlib import nullcontext
     from types import SimpleNamespace
     from spt_desktop import worker
-    from support_runs import synthetic_submitted_sources
-    from support_selected_capture import synthetic_mpn
+    from support.support_runs import synthetic_submitted_sources
+    from support.support_selected_capture import synthetic_mpn
     synthetic_mpn(worker, monkeypatch, {})
 
     reads = 0

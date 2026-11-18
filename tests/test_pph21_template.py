@@ -11,12 +11,12 @@ from openpyxl import load_workbook
 import coretax
 import coretax_exporter as exporter
 from spt_desktop import runtime
-from support_pph21_numeric import money_row
+from support.support_pph21_numeric import money_row
 
 REFERENCE = Path(__file__).parent / 'fixtures' / 'pph21_format.xlsx'
 JANUARY = 'SPT Masa 21/SPT_21_Januari 2025_Normal.xlsx'
 FORMS = ['Induk', 'L-IA', 'L-IB', 'L-II', 'L-III']
-from support_templates import IA_HEADERS, assert_format, assert_layout, cells_with, run_for, section, table
+from support.support_templates import IA_HEADERS, assert_format, assert_layout, cells_with, run_for, section, table
 
 INDUK_HEADERS = ['NO.', 'URAIAN', 'KAP-KJS', 'JUMLAH (Rp)']
 
@@ -30,7 +30,7 @@ def row(marker='SYNTHETIC EMPLOYEE', *, ia=False):
 
 
 def export(run, folder, *, expected_file=JANUARY, reports=None):
-    from support_masa_binding import reference_geometry
+    from support.support_masa_binding import reference_geometry
     with reference_geometry():
         exporter.export_split_workbooks(run, folder, mapping_reports=reports)
     coretax.verify_outputs(run, folder)

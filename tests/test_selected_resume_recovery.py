@@ -9,8 +9,8 @@ from types import SimpleNamespace
 import pytest
 
 from spt_desktop.interaction import select_records
-from support_runs import fixture_run
-from support_selected_capture import selected_job
+from support.support_runs import fixture_run
+from support.support_selected_capture import selected_job
 
 
 def recovery():
@@ -150,7 +150,7 @@ def test_cli_continuation_consumes_saved_desktop_selection_and_mode(tmp_path, mo
 def test_nonprefix_selection_reuses_real_first_ordinal_checkpoint_without_navigation(tmp_path, mode):
     module = recovery()
     import coretax_browser as driver
-    import support_browser_protocol as protocol
+    import support.support_browser_protocol as protocol
     inventory = protocol.run_fixture()
     original = deepcopy(inventory['records'][0])
     inventory['records'] = [

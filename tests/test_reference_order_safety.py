@@ -54,11 +54,11 @@ def case(family):
         from test_corporate_l11c_native import packets, selected, bindings, COUNTRY, corpus
         return selected(), packets(), bindings(), corpus.SCOPE, COUNTRY
     if family == 'pph21':
-        from pph21_projection_fixture import case as create, REFERENCE
+        from support.pph21_projection_fixture import case as create, REFERENCE
         from masa_json_fixtures import SCOPE
         record, packets, forms = create()
         return record, packets, forms, SCOPE, REFERENCE
-    from unifikasi_projection_fixture import case as create, URL
+    from support.unifikasi_projection_fixture import case as create, URL
     value = create()
     return value['record'], value['packets'], value['forms'], value['scope'], URL
 
@@ -147,7 +147,7 @@ def test_vendor_proof_never_relaxes_period_or_model_dropdown_uniqueness(family):
     induk, = [form for form in forms if form['name'] in ('Induk', 'INDUK')]
     induk['reference_order_build'] = VENDOR_SHA
     if family == 'pph21':
-        from pph21_projection_fixture import MODEL_REFERENCE
+        from support.pph21_projection_fixture import MODEL_REFERENCE
         endpoint = MODEL_REFERENCE
     def mutate(payload):
         target = payload[-1] if family == 'unifikasi' else payload[0]

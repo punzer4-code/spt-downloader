@@ -3,8 +3,8 @@ from copy import deepcopy
 import json
 import coretax_corporate as observer
 import coretax_corporate_projection as projection
-import support_json_corpus as corpus
-from l1d_observer_fixture import Fixture as BaseFixture
+import support.support_json_corpus as corpus
+from support.l1d_observer_fixture import Fixture as BaseFixture
 from test_corporate_l7_native import l7_html, envelope
 from test_corporate_l7_projection import ROOT, BODY, SUFFIXES
 from test_corporate_l7_negative_native import negative_envelope

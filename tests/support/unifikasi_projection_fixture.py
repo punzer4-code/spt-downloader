@@ -4,7 +4,7 @@ import json
 from coretax_json import ORIGIN
 from coretax_masa_bindings import _UNIFIKASI_GRID_COLUMNS
 from masa_json_fixtures import RECORD, packet
-from masa_projection_fixture import field, response
+from support.masa_projection_fixture import field, response
 from test_unifikasi_json_identity import source_case
 from test_unifikasi_json_references import TYPES, catalogs
 

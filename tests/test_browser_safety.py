@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import coretax_browser as driver
 
 
-from support_browser_protocol import (
+from support.support_browser_protocol import (
     Container, DETAIL_URL, DetailPage, LIST_URL, META, RECORD, SignalSource, SourcePage, TAXPAYER, Table, View, response, run_fixture, write_checkpoint
 )
 

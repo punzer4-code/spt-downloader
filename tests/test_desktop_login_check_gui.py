@@ -8,7 +8,7 @@ ORIGIN='https://satu.intranet.pajak.go.id'
 ACCOUNT='SYNTHETIC_ACCOUNT'
 
 
-from support_gui import (
+from support.support_gui import (
     Controller
 )
 

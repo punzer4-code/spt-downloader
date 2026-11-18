@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from support_isolated_browser import browser as browser
+from support.support_isolated_browser import browser as browser
 from test_mpn_capture_browser import portal
 from test_mpn import scope_run
 from test_diagnostics import records

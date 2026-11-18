@@ -3,7 +3,7 @@
 
 from spt_desktop import auth
 from spt_desktop.credentials import Login
-import support_login_browser as flow
+import support.support_login_browser as flow
 
 # Reuse the real routed Edge fixture; every non-fixture request is aborted.
 browser = flow.browser

@@ -3,10 +3,10 @@ from copy import deepcopy
 
 import pytest
 
-from support_financial_browser import browser as browser
-from support_financial_browser import DETAIL, ORIGIN, PDF, RECORD, attachments, downloaded
-from support_financial_post import AUTHORIZATION, DOCUMENT, ENDPOINT, SCRIPT, TAXPAYER
-from support_financial_post import post_routed as post_routed
+from support.support_financial_browser import browser as browser
+from support.support_financial_browser import DETAIL, ORIGIN, PDF, RECORD, attachments, downloaded
+from support.support_financial_post import AUTHORIZATION, DOCUMENT, ENDPOINT, SCRIPT, TAXPAYER
+from support.support_financial_post import post_routed as post_routed
 
 
 def assert_partial(result, folder):

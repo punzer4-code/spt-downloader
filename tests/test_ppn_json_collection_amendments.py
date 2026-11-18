@@ -6,7 +6,7 @@ import pytest
 
 from coretax_json import _UnsupportedMetadata, _corporate_json
 from coretax_masa_bindings import project_ppn_amount
-from masa_projection_fixture import field
+from support.masa_projection_fixture import field
 from test_ppn_json_amendment import amend_case, decode, reseal
 
 COLUMNS = [('SellingPrice', 'SellingPrice', 'TaxBase'), ('OtherTaxBase', 'OtherTaxBase', 'OtherTaxBase'),

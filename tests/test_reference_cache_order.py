@@ -122,7 +122,7 @@ def test_country_cache_order_reaches_final_saved_workbook_and_original_response_
     import coretax
     from openpyxl import load_workbook
     from coretax_json import adapt_corporate_detail
-    import support_json_corpus as corpus
+    import support.support_json_corpus as corpus
     from test_corporate_l11c_native import packets, envelope, bindings, selected
 
     rows = [{**active('ZULU'), 'Code': 'SYN_COUNTRY_A'},

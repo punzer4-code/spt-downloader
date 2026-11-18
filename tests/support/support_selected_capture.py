@@ -3,7 +3,7 @@ import inspect
 import json
 from types import SimpleNamespace
 from spt_desktop import worker
-from support_runs import fixture_run
+from support.support_runs import fixture_run
 
 
 def synthetic_browser(module,monkeypatch,state):

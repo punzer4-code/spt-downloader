@@ -2,7 +2,7 @@
 import pytest
 
 import coretax_browser as driver
-from support_isolated_browser import browser as browser
+from support.support_isolated_browser import browser as browser
 from test_json_inventory import synthetic_listing_browser
 
 
@@ -172,7 +172,7 @@ def test_stop_during_catalog_grace_prevents_another_read_or_request(browser, tmp
 @pytest.mark.parametrize('saved_size', [100, 50])
 def test_detail_restore_uses_captured_size_or_fails_before_view_without_noop_wait(browser, tmp_path,
                                                                              monkeypatch, saved_size):
-    from support_browser_protocol import capture_failures
+    from support.support_browser_protocol import capture_failures
     failures = capture_failures(monkeypatch)
     with synthetic_listing_browser(browser, monkeypatch, year_catalog=True, expired_catalog=True,
                                    page_sizes=[10, 50, 100],

@@ -1,9 +1,9 @@
 """Real Edge DOM recovery contracts. All traffic is routed synthetic data."""
 import pytest
 import coretax_browser as driver
-from support_isolated_browser import browser as browser, context as context
+from support.support_isolated_browser import browser as browser, context as context
 from test_ppn_capture_readiness import page as page, install
-from support_browser_protocol import SourcePage, Table, run_fixture
+from support.support_browser_protocol import SourcePage, Table, run_fixture
 
 
 @pytest.mark.parametrize('kind', ['aria', 'ancestor', 'nested'])

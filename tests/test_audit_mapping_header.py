@@ -2,7 +2,7 @@
 from copy import deepcopy
 from openpyxl import load_workbook
 import coretax_exporter as exporter
-from support_financial_publication import financial_run
+from support.support_financial_publication import financial_run
 
 
 def test_resume_mapping_header_is_separate_from_inventory_and_pdf_headers(tmp_path):

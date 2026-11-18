@@ -5,7 +5,7 @@ Hosted Windows browser fixture; no accounts, endpoints or captured values.
 import pytest
 
 from coretax_json_capture import _L7_HISTORY
-from support_isolated_browser import browser as browser, context as context
+from support.support_isolated_browser import browser as browser, context as context
 
 CHAIN = """
 <rshshr-corporate-income-tax-return>

@@ -2,7 +2,7 @@
 import pytest
 
 import coretax_browser as driver
-from support_browser_protocol import (
+from support.support_browser_protocol import (
     DETAIL_URL, LIST_URL, TAXPAYER, SourcePage, response, run_fixture, capture_failures,
 )
 

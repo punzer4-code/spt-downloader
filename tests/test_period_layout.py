@@ -4,7 +4,7 @@ import pytest
 from openpyxl import load_workbook
 import coretax
 import coretax_exporter as exporter
-from support_runs import fixture_run
+from support.support_runs import fixture_run
 
 
 def periodic_run():

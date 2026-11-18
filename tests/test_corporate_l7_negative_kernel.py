@@ -5,7 +5,7 @@ import pytest
 
 from coretax_corporate_projection import project_l7
 from coretax_json import _corporate_json, _UnsupportedMetadata
-from support_json_corpus import Number, wire
+from support.support_json_corpus import Number, wire
 from test_corporate_l7_projection import raw_source, BODY, SUFFIXES, HEADERS, SPANS
 
 

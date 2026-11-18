@@ -2,8 +2,8 @@
 import html
 import json
 import re
-from masa_observer_fixture import Fixture
-from unifikasi_projection_fixture import URL, case
+from support.masa_observer_fixture import Fixture
+from support.unifikasi_projection_fixture import URL, case
 from test_masa_json_field_observation import PERIOD
 
 

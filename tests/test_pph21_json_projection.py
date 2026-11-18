@@ -6,8 +6,8 @@ from openpyxl import load_workbook
 from coretax_json import JsonSafetyError
 from coretax_masa_json import adapt_masa_detail
 from masa_json_fixtures import SCOPE, RECORD
-from pph21_projection_fixture import case
-from support_templates import assert_format, assert_layout, run_for
+from support.pph21_projection_fixture import case
+from support.support_templates import assert_format, assert_layout, run_for
 from test_pph21_template import REFERENCE, export
 
 

@@ -14,13 +14,13 @@ from coretax_json import adapt_corporate_detail
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
 from coretax_mpn_browser import collect_mpn
 from coretax_mpn_ui import AccountingUI
-from l3_observer_fixture import Fixture, ASSET
-from support_isolated_browser import browser as browser, context as context
+from support.l3_observer_fixture import Fixture, ASSET
+from support.support_isolated_browser import browser as browser, context as context
 from test_corporate_dom_page_size import fixture as dom_fixture, assert_rows
 from test_corporate_l3_observer import open_selected
 from test_mpn import scope_run
 from test_mpn_capture_browser import portal
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 
 
 class StandaloneFixture(Fixture):

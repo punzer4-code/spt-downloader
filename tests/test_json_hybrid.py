@@ -13,11 +13,11 @@ import pytest
 
 import coretax_browser as driver
 import coretax_json as native
-import support_browser_protocol as protocol
-import support_financial_evidence as financial
-import support_json_corpus as corpus
+import support.support_browser_protocol as protocol
+import support.support_financial_evidence as financial
+import support.support_json_corpus as corpus
 
-from support_json_hybrid import DOM_SECTIONS, PRIMARY_REQUEST, Scenario, StopRequested, collector
+from support.support_json_hybrid import DOM_SECTIONS, PRIMARY_REQUEST, Scenario, StopRequested, collector
 
 def checkpoint_reader():
     parameter = inspect.signature(driver.read_detail_checkpoint).parameters.get('detail_source')

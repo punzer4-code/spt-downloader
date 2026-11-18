@@ -6,9 +6,9 @@ import pytest
 
 from coretax_json import JsonSafetyError
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
-from support_json_network import Context, Request, exchange
+from support.support_json_network import Context, Request, exchange
 from test_json_capture import Page, ORIGIN, SCOPE, RAW, record as old_record
-from support_json_network import API_URL
+from support.support_json_network import API_URL
 
 LIST = ORIGIN + '/returnsheets/id-ID/submitted-returnsheets/fixture-taxpayer'
 DETAIL = ORIGIN + '/returnsheets/id-ID/corporate-income-tax-return/fixture-taxpayer/fixture-record/ICT_RCIT/fixture-aggregate?view=true'

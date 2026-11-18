@@ -7,10 +7,10 @@ import pytest
 import coretax_browser as driver
 from coretax_json import JsonSafetyError
 from masa_json_fixtures import SCOPE
-from masa_observer_fixture import ASSETS, BUILD, FORMS, MAIN
+from support.masa_observer_fixture import ASSETS, BUILD, FORMS, MAIN
 
 
-from support_masa_native import browser as browser, observed
+from support.support_masa_native import browser as browser, observed
 
 
 @pytest.mark.parametrize('tax', ['PPN', 'PPh Unifikasi'])

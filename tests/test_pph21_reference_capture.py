@@ -3,7 +3,7 @@ import pytest
 
 from coretax_json import ORIGIN
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
-from support_json_network import Context, Frame, Request, Response
+from support.support_json_network import Context, Frame, Request, Response
 from test_json_capture import Page, DETAIL_URL, SCOPE, record
 
 URL = ORIGIN + '/referencedata/api/currentreferencedata/id-ID/EBUPOT_TAX_CERTIFICATE,COUNTRY_CODE,EBUPOT_STATUS'

@@ -6,8 +6,8 @@ import tkinter as tk
 import pytest
 
 from spt_desktop.app import App
-from support_gui import Controller, widgets
-from support_build_reports import report
+from support.support_gui import Controller, widgets
+from support.support_build_reports import report
 from build_desktop import validate_report
 
 TEXT = 'bugreport : sharmila@kemenkeu.go.id'

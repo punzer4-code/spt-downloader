@@ -6,7 +6,7 @@ import coretax_masa_observer as masa_observer
 import coretax_pph21_observer as pph21_observer
 from coretax_json import JsonSafetyError
 from masa_json_fixtures import SCOPE
-from pph21_projection_fixture import case
+from support.pph21_projection_fixture import case
 from test_ppn_json_dispatch import Capture
 
 

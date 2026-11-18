@@ -7,7 +7,7 @@ import pytest
 
 import coretax
 import coretax_exporter as exporter
-from support_templates import section, source_run
+from support.support_templates import section, source_run
 
 
 RESOURCE = Path(__file__).resolve().parents[1] / 'resources/corporate_format.xlsx'

@@ -10,7 +10,7 @@ import coretax
 import coretax_browser as driver
 import coretax_exporter as exporter
 from coretax_json import JsonSafetyError, adapt_corporate_detail
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 from test_corporate_l7_projection import ROOT, HEADERS, SPANS, raw_source
 from test_json_hybrid_native import ASSET, BUILD, NativeFixture, browser as browser, PDF_URL
 

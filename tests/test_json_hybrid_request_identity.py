@@ -9,9 +9,9 @@ import pytest
 
 import coretax_browser as driver
 import coretax_json as native
-import support_json_corpus as corpus
-import support_json_network as network
-from support_json_hybrid import DOM_SECTIONS, PRIMARY_REQUEST, Scenario, collector
+import support.support_json_corpus as corpus
+import support.support_json_network as network
+from support.support_json_hybrid import DOM_SECTIONS, PRIMARY_REQUEST, Scenario, collector
 
 
 # Independent literals from the inspected read-only contracts, not a production

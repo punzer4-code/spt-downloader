@@ -5,7 +5,7 @@ import importlib.util
 import json
 import pytest
 from spt_desktop.controller import parse_event
-from support_runs import fixture_run
+from support.support_runs import fixture_run
 
 
 def interaction():

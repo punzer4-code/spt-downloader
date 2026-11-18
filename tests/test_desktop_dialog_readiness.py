@@ -6,7 +6,7 @@ import tkinter as tk
 
 import pytest
 
-from support_gui import ConsentController, consent_event, named_widget
+from support.support_gui import ConsentController, consent_event, named_widget
 
 
 def wait_for_existing_timers(root):

@@ -12,8 +12,8 @@ import pytest
 from openpyxl import load_workbook
 
 import coretax_exporter as exporter
-import support_json_corpus as corpus
-import support_json_hybrid as hybrid
+import support.support_json_corpus as corpus
+import support.support_json_hybrid as hybrid
 
 
 @pytest.fixture

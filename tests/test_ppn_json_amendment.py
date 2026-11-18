@@ -9,7 +9,7 @@ import pytest
 from coretax_json import JsonSafetyError, _corporate_json
 from coretax_masa_json import adapt_masa_detail
 from coretax_masa_bindings import project_ppn_amount
-from masa_projection_fixture import field, native_case
+from support.masa_projection_fixture import field, native_case
 
 
 def amend_case():

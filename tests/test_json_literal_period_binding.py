@@ -82,8 +82,8 @@ def test_primary_period_evidence_rejects_different_literal_code_even_without_lis
 def test_literal_pph21_period_projects_and_saves_all_five_compacted_forms(tmp_path):
     from coretax_exporter import export_split_workbooks
     from masa_json_fixtures import SCOPE as primary_scope
-    from pph21_projection_fixture import case as native_case
-    from support_templates import run_for
+    from support.pph21_projection_fixture import case as native_case
+    from support.support_templates import run_for
 
     record, bodies, forms = native_case()
     record['meta']['Masa Pajak'] = record['source_fields']['TaxPeriodCode']
@@ -182,7 +182,7 @@ def test_hybrid_cannot_hide_unbound_pph21_literal_period_conflict_with_dom_fallb
 @pytest.mark.parametrize('conflict', ['inner-code', 'selected-year'])
 def test_unbound_corporate_primary_rejects_literal_period_conflict(basis, conflict):
     from coretax_json import adapt_corporate_detail
-    import support_json_corpus as corpus
+    import support.support_json_corpus as corpus
 
     record, form = corpus.selected_record(), corpus.current_form()
     scope = [*corpus.SCOPE[:2], basis]
@@ -199,7 +199,7 @@ def test_unbound_corporate_primary_rejects_literal_period_conflict(basis, confli
 
 def test_consistent_unbound_corporate_literal_period_remains_ineligible():
     from coretax_json import adapt_corporate_detail
-    import support_json_corpus as corpus
+    import support.support_json_corpus as corpus
 
     record = corpus.selected_record()
     record['meta']['Masa Pajak'] = '01122025'

@@ -7,8 +7,8 @@ from openpyxl import load_workbook
 
 import coretax
 import coretax_exporter as exporter
-from support_templates import section, run_for, source_appendix, APPENDICES
-from support_pph21_dom import appendix_table
+from support.support_templates import section, run_for, source_appendix, APPENDICES
+from support.support_pph21_dom import appendix_table
 
 
 def saved(tmp_path, tax, sections):

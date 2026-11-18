@@ -6,7 +6,7 @@ import subprocess
 import sys
 
 from masa_json_fixtures import SCOPE
-from pph21_projection_fixture import case
+from support.pph21_projection_fixture import case
 
 
 def test_allowlisted_worker_projects_all_five_pph21_forms_without_repository_imports(tmp_path):

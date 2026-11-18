@@ -3,10 +3,10 @@ from copy import deepcopy
 
 import pytest
 
-from support_financial_browser import browser as browser
-from support_financial_browser import ORIGIN, RECORD, attachments, downloaded
-from support_financial_post import TAXPAYER
-from support_financial_post import post_routed as post_routed
+from support.support_financial_browser import browser as browser
+from support.support_financial_browser import ORIGIN, RECORD, attachments, downloaded
+from support.support_financial_post import TAXPAYER
+from support.support_financial_post import post_routed as post_routed
 
 
 CONTEXT = '11111111-2222-4333-8444-555555555555'
@@ -95,7 +95,7 @@ def test_financial_guard_failure_retains_safe_originating_frames(post_routed, tm
     import json
     from spt_desktop import diagnostics
     from test_diagnostics import records
-    from support_financial_post import AUTHORIZATION, DOCUMENT
+    from support.support_financial_post import AUTHORIZATION, DOCUMENT
 
     page, wire = post_routed(detail_url=DETAIL + '?view=false')
     with diagnostics.session(tmp_path / 'diagnostics', 'worker') as log:

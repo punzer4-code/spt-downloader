@@ -1,7 +1,7 @@
 """Synthetic PPh21 DOM shapes; no taxpayer values or captured records."""
 from copy import deepcopy
 from openpyxl import load_workbook
-from support_templates import COMMON_HEADERS, IA_HEADERS, section
+from support.support_templates import COMMON_HEADERS, IA_HEADERS, section
 from test_pph21_template import REFERENCE, INDUK_HEADERS, row
 
 TOOLTIP = ' This row contain the total amount of payment before amendment.'

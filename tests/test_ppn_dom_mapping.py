@@ -12,7 +12,7 @@ from openpyxl import load_workbook
 import coretax_exporter as exporter
 
 
-from support_templates import run_for, section, table, assert_format
+from support.support_templates import run_for, section, table, assert_format
 
 
 RESOURCES = Path(__file__).resolve().parents[1] / 'resources'
@@ -21,7 +21,7 @@ RESOURCES = Path(__file__).resolve().parents[1] / 'resources'
 def exported(tmp_path, tax, sections):
     run = run_for(sections)
     run['records'][0]['meta']['Jenis Pajak'] = tax
-    from support_masa_binding import reference_geometry
+    from support.support_masa_binding import reference_geometry
     with reference_geometry():
         files = exporter.export_split_workbooks(run, tmp_path)
     return load_workbook(tmp_path / next(f for f in files if f != 'resume.xlsx'))

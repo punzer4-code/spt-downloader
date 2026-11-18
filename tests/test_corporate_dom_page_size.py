@@ -5,7 +5,7 @@ import pytest
 
 import coretax_browser as driver
 from spt_desktop import diagnostics as d
-from support_isolated_browser import browser as browser, context as context
+from support.support_isolated_browser import browser as browser, context as context
 from test_diagnostics import records
 
 

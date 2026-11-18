@@ -7,10 +7,10 @@ from openpyxl import load_workbook
 
 import coretax_browser as driver
 from coretax_exporter import export_split_workbooks
-import support_browser_protocol as protocol
-from support_runs import fixture_run
+import support.support_browser_protocol as protocol
+from support.support_runs import fixture_run
 
-from support_financial_evidence import (
+from support.support_financial_evidence import (
     LABEL, PDF, metadata
 )
 

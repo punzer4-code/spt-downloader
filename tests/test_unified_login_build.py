@@ -2,7 +2,7 @@
 import json
 import pytest
 from build_desktop import validate_report
-from support_build_reports import report
+from support.support_build_reports import report
 
 
 @pytest.mark.parametrize('value', [None, {}, {'credential_origin': 'coretax'},

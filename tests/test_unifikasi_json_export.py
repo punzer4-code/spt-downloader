@@ -4,8 +4,8 @@ from copy import deepcopy
 import pytest
 
 from coretax_masa_json import adapt_masa_detail
-from masa_projection_fixture import native_case
-from support_masa_native import exported
+from support.masa_projection_fixture import native_case
+from support.support_masa_native import exported
 
 TAX = 'PPh Unifikasi'
 ACCOUNTING_RP = '_-"Rp"* #,##0_-;\\-"Rp"* #,##0_-;_-"Rp"* "-"??_-;_-@_-'

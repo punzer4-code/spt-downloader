@@ -8,13 +8,13 @@ import coretax_corporate as observer
 from coretax_json import adapt_corporate_detail
 from coretax_json_capture import DetailJsonCapture
 from spt_desktop import diagnostics
-from l11a_observer_fixture import Fixture
-from l3_observer_fixture import Fixture as L3Fixture
+from support.l11a_observer_fixture import Fixture
+from support.l3_observer_fixture import Fixture as L3Fixture
 from test_corporate_l11a_observer import open_selected
 from test_json_hybrid_native import browser as browser
 import test_corporate_l11a_native as l11a
 import test_corporate_l3_native as l3
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 
 
 def overlapping_catalogs(kinds):

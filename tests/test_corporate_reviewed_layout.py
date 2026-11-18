@@ -5,7 +5,7 @@ import pytest
 from openpyxl import load_workbook
 
 import coretax_exporter as exporter
-from support_templates import section, source_run
+from support.support_templates import section, source_run
 from test_badan_shouldbe_presentation import fields
 from test_corporate_compact_export import export, table
 

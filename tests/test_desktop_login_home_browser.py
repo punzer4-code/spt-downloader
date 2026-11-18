@@ -3,7 +3,7 @@ import pytest
 from spt_desktop import auth
 from spt_desktop.credentials import Login
 
-from support_login_browser import ASYNC_LOGIN_TIMEOUT, Engine, SEARCH, browser as browser
+from support.support_login_browser import ASYNC_LOGIN_TIMEOUT, Engine, SEARCH, browser as browser
 
 # Alur sukses memberi ruang penjadwalan CI; batas waktu/Stop diuji dengan jam simulasi.
 @pytest.mark.parametrize('marker_delay_ms',[250,3500])

@@ -1,9 +1,9 @@
 """Synthetic PPN initial-shell readiness and real DOM-to-XLSX contracts."""
 import pytest
-from support_isolated_browser import browser as browser, context as context
+from support.support_isolated_browser import browser as browser, context as context
 
 import coretax_browser as driver
-from support_templates import export_ppn
+from support.support_templates import export_ppn
 
 
 NAMES = ['INDUK', 'A-1', 'A-2', 'B-1', 'B-2', 'B-3', 'C']

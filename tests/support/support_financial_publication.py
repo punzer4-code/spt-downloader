@@ -1,8 +1,8 @@
 """Synthetic financial publication helpers; no collected tests or shared mutable test state."""
 import hashlib
-from support_runs import fixture_run
+from support.support_runs import fixture_run
 import coretax_exporter as exporter
-from support_runs import model_run
+from support.support_runs import model_run
 
 
 PDF = b'%PDF-1.7\n1 0 obj\n(ORIGINAL SYNTHETIC FIXTURE)\nendobj\n%%EOF\n'

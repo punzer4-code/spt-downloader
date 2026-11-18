@@ -1,17 +1,17 @@
 """Observed PPN DOM structure, tested only with synthetic values."""
-from support_templates import section
+from support.support_templates import section
 
 
 import pytest
 
 
-from support_isolated_browser import browser as browser, isolated_context
+from support.support_isolated_browser import browser as browser, isolated_context
 
 
 import coretax_browser as driver
 
 
-from support_templates import export, source_run
+from support.support_templates import export, source_run
 
 
 PPN_COLUMNS = ['Harga Jual/Penggantian/ Nilai Ekspor/DPP (Rupiah)',

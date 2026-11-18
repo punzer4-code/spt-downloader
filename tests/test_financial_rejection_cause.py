@@ -5,9 +5,9 @@ import json
 import pytest
 
 from spt_desktop import diagnostics
-from support_financial_browser import browser as browser, attachments, downloaded
-from support_financial_post import post_routed as post_routed
-from support_financial_post import AUTHORIZATION, DOCUMENT, ENDPOINT, TAXPAYER
+from support.support_financial_browser import browser as browser, attachments, downloaded
+from support.support_financial_post import post_routed as post_routed
+from support.support_financial_post import AUTHORIZATION, DOCUMENT, ENDPOINT, TAXPAYER
 from test_diagnostics import records
 from test_financial_actual_route import DETAIL, CONTEXT, record
 

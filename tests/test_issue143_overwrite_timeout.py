@@ -6,8 +6,8 @@ import pytest
 
 from spt_desktop import diagnostics, interaction, worker
 from test_diagnostics import records
-from support_runs import fixture_run
-from support_selected_capture import synthetic_browser
+from support.support_runs import fixture_run
+from support.support_selected_capture import synthetic_browser
 from test_desktop_dialog_layout import active_app as active_app, open_overwrite, settle
 
 

@@ -3,7 +3,7 @@ from copy import deepcopy
 
 from coretax_corporate_projection import project_l7
 from coretax_json import _corporate_json
-from support_json_corpus import Number, wire
+from support.support_json_corpus import Number, wire
 from test_corporate_l7_projection import BODY, ROOT, HEADERS, SPANS, raw_source
 
 

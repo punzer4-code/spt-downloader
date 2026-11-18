@@ -37,7 +37,7 @@ def native_case(tax, *, populated=True):
     data.update(Name='SYNTHETIC NATIVE NAME', Address='SYNTHETIC ADDRESS', PhoneNumber='00000000')
     forms, packets = [], []
     resource = 'ppn_format.xlsx' if tax == 'PPN' else 'unifikasi_format.xlsx'
-    reference = load_workbook(Path(__file__).resolve().parents[1] / 'resources' / resource)
+    reference = load_workbook(Path(__file__).resolve().parents[2] / 'resources' / resource)
     try:
         def add_form(name, fields=()):
             result = {'name': name, 'fields': list(fields), 'tables': [],

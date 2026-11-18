@@ -7,8 +7,8 @@ from types import SimpleNamespace
 import pytest
 
 from test_mpn import scope_run
-from support_runs import fixture_run
-from support_selected_capture import synthetic_browser
+from support.support_runs import fixture_run
+from support.support_selected_capture import synthetic_browser
 
 
 def capture_result(run, *, complete=True):
