@@ -16,12 +16,12 @@ import coretax_json as adapter
 from coretax_corporate import observe_forms
 from coretax_json import JsonSafetyError, adapt_corporate_detail
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
-from l3_observer_fixture import Fixture, ASSET
+from support.l3_observer_fixture import Fixture, ASSET
 from test_corporate_l3_native import DETAIL, GRID, FOOTER, REFERENCES, OWNERS, request
 from test_corporate_l3_observer import open_selected
 from test_corporate_l3_projection import HEADERS, SPANS
 from test_json_hybrid_native import browser as browser
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 
 
 BASE_FIELDS = {'RecordId', 'Name', 'TIN', 'TaxType', 'TaxBase', 'IncomeTax',

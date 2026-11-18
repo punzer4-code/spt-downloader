@@ -3,7 +3,7 @@ from copy import deepcopy
 
 import pytest
 
-from masa_projection_fixture import field
+from support.masa_projection_fixture import field
 from test_ppn_json_amendment import amend_case, decode
 
 APPENDICES = ['A-1', 'A-2', 'B-1', 'B-2', 'B-3', 'C']

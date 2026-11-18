@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from support_json_corpus import Number, current_form, observed, packet, primary, wire
+from support.support_json_corpus import Number, current_form, observed, packet, primary, wire
 from test_json_adapter import adapt, eligible
 
 SCHEMA_NULL = ['CalculationAfterTaxIncome5Years', 'CalculationLetterOfTheIncomeTax',
@@ -259,7 +259,7 @@ def _l4_packets(*, footer_tax_base='100', with_footer=True):
 
 
 def _l4_forms():
-    from support_json_corpus import ORIGIN, RECORD_ID
+    from support.support_json_corpus import ORIGIN, RECORD_ID
     grid_url = ORIGIN + '/returnsheet/api/loadcit/l4-table-a-grid'
     footer_url = grid_url + '/footer'
     forms = observed(['ListOfIncomeSubjectToFinalTaxAndNonTaxableObject'])
@@ -272,7 +272,7 @@ def _l4_forms():
 
 
 def test_l4_footer_reconciles_with_stored_totals():
-    from support_json_corpus import RECORD_ID, source_row
+    from support.support_json_corpus import RECORD_ID, source_row
     form = _l4_packets()
     forms, grid_url, footer_url = _l4_forms()
     bodies = [primary_with_outer_periods(form)]
@@ -288,7 +288,7 @@ def test_l4_footer_reconciles_with_stored_totals():
 
 
 def test_l4_footer_contradiction_is_fatal_and_missing_footer_refuses():
-    from support_json_corpus import RECORD_ID, source_row
+    from support.support_json_corpus import RECORD_ID, source_row
     form = _l4_packets()
     forms, grid_url, footer_url = _l4_forms()
     bodies = [primary_with_outer_periods(form)]
@@ -308,7 +308,7 @@ def test_l4_footer_contradiction_is_fatal_and_missing_footer_refuses():
 
 
 def test_l4_footer_non_numeric_usd_refuses():
-    from support_json_corpus import RECORD_ID, source_row
+    from support.support_json_corpus import RECORD_ID, source_row
     form = _l4_packets()
     forms, grid_url, footer_url = _l4_forms()
     bodies = [primary_with_outer_periods(form)]
@@ -327,7 +327,7 @@ def test_l4_footer_non_numeric_usd_refuses():
 
 @pytest.mark.parametrize('usd', ['NaN', 'Infinity'])
 def test_l4_footer_nonfinite_usd_refuses(usd):
-    from support_json_corpus import RECORD_ID, source_row
+    from support.support_json_corpus import RECORD_ID, source_row
     form = _l4_packets()
     forms, grid_url, footer_url = _l4_forms()
     bodies = [primary_with_outer_periods(form)]
@@ -346,7 +346,7 @@ def test_l4_footer_nonfinite_usd_refuses(usd):
 
 @pytest.mark.parametrize('usd', ['0', '100'])
 def test_l4_footer_string_numeric_usd_refuses(usd):
-    from support_json_corpus import RECORD_ID, source_row
+    from support.support_json_corpus import RECORD_ID, source_row
     form = _l4_packets()
     forms, grid_url, footer_url = _l4_forms()
     bodies = [primary_with_outer_periods(form)]

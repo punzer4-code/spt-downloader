@@ -14,10 +14,10 @@ from openpyxl import load_workbook
 import coretax
 import coretax_exporter as exporter
 from spt_desktop import runtime
-from support_templates import assert_format, assert_layout, cells_with, section
+from support.support_templates import assert_format, assert_layout, cells_with, section
 
 FIXTURES = Path(__file__).parent / 'fixtures'
-from support_templates import (
+from support.support_templates import (
     TYPES, export, source_run
 )
 
@@ -365,7 +365,7 @@ def test_each_amendment_uses_independent_templates_and_exact_resume_links(tmp_pa
     run['records'].append(amendment)
     normal_file = TYPES[tax]['path']
     amendment_file = normal_file.replace('_Normal.xlsx', '_Pembetulan 2.xlsx')
-    from support_masa_binding import reference_geometry
+    from support.support_masa_binding import reference_geometry
     with reference_geometry():
         files = exporter.export_split_workbooks(run, tmp_path)
     assert set(files) == {'resume.xlsx', normal_file, amendment_file}

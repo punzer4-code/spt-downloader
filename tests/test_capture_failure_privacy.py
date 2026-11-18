@@ -46,7 +46,7 @@ def test_actual_table_failure_keeps_safe_proof_and_recovers_later_panel(
 def test_first_reset_loading_timeout_records_initial_loading_without_changing_partial(
         routed, tmp_path, monkeypatch, overlay_kind):
     from playwright.sync_api import Locator
-    from support_browser_protocol import capture_failures
+    from support.support_browser_protocol import capture_failures
 
     page, requests = routed(control='')
     secret = 'SYNTHETIC_PRIVATE_INITIAL_LOADING'

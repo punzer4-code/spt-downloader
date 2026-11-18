@@ -8,7 +8,7 @@ from types import SimpleNamespace
 import pytest
 
 MODES = ['dom', 'json-first']
-from support_mode_gui import CAPTIONS, StartInput, button, mode_control, window as window
+from support.support_mode_gui import CAPTIONS, StartInput, button, mode_control, window as window
 
 def worker_job():
     from spt_desktop import worker
@@ -21,9 +21,9 @@ def worker_job():
 @pytest.mark.parametrize('mode', MODES)
 def test_worker_selected_scope_forwards_literal_mode_to_collector(tmp_path, monkeypatch, mode):
     worker = worker_job()
-    from support_selected_capture import synthetic_mpn
+    from support.support_selected_capture import synthetic_mpn
     synthetic_mpn(worker, monkeypatch, {})
-    from support_runs import fixture_run
+    from support.support_runs import fixture_run
     run = fixture_run()
     run.update(inventory_complete=True)
     for record in run['records']:
@@ -122,7 +122,7 @@ def test_worker_cli_mode_reaches_export_and_keeps_stdout_json_only(tmp_path, mon
 @pytest.mark.parametrize('mode', MODES)
 def test_offline_canonical_json_exports_real_workbooks_without_browser_or_native_decode(tmp_path, monkeypatch, mode):
     import coretax
-    from support_runs import fixture_run
+    from support.support_runs import fixture_run
     parsed = coretax.parser().parse_args(['--detail-source', mode])
     assert parsed.detail_source == mode
     original = fixture_run()

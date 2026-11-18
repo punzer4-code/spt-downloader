@@ -2,7 +2,7 @@
 from copy import copy
 from decimal import Decimal
 import pytest
-from support_templates import section, APPENDICES, export_ppn, source_appendix
+from support.support_templates import section, APPENDICES, export_ppn, source_appendix
 
 
 @pytest.mark.parametrize('form,case,total', [('B1', APPENDICES[2], 6), ('C', APPENDICES[5], 7)])

@@ -83,10 +83,10 @@ def test_actual_synthetic_l3_owner_refusal_keeps_dom_fallback_and_logs_fixed_sub
         browser, tmp_path, monkeypatch, defect, reason):
     from coretax_corporate import observe_forms
     from coretax_json_capture import DetailJsonCapture
-    from l3_observer_fixture import Fixture, ASSET
+    from support.l3_observer_fixture import Fixture, ASSET
     from test_corporate_l3_observer import open_selected
     from spt_desktop import diagnostics
-    import support_json_corpus as corpus
+    import support.support_json_corpus as corpus
 
     fixture = Fixture(browser, monkeypatch, defect=defect)
     try:
@@ -231,10 +231,10 @@ def test_l3_synthetic_late_refusal_is_named_without_changing_source_admission(
     from coretax_corporate import observe_forms
     from coretax_json import CORPORATE_L3_GRID_URL, CORPORATE_L3_FOOTER_URL
     from coretax_json_capture import DetailJsonCapture
-    from l3_observer_fixture import Fixture, ASSET
+    from support.l3_observer_fixture import Fixture, ASSET
     from test_corporate_l3_observer import open_selected
     from spt_desktop import diagnostics
-    import support_json_corpus as corpus
+    import support.support_json_corpus as corpus
 
     fixture = Fixture(browser, monkeypatch)
     try:
@@ -407,10 +407,10 @@ def test_live_shaped_visible_extra_l3_keeps_json_hybrid_fail_closed(
         browser, tmp_path, monkeypatch):
     from coretax_corporate import observe_forms
     from coretax_json_capture import DetailJsonCapture
-    from l3_observer_fixture import Fixture, ASSET
+    from support.l3_observer_fixture import Fixture, ASSET
     from test_corporate_l3_observer import open_selected
     from spt_desktop import diagnostics
-    import support_json_corpus as corpus
+    import support.support_json_corpus as corpus
 
     fixture=Fixture(browser, monkeypatch, defect='visible-extra-form')
     try:

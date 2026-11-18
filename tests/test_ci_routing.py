@@ -332,7 +332,7 @@ def test_inventory_check_rejects_incomplete_windows_tests_and_mixed_commit_evide
 
 
 def test_documentation_push_cannot_cancel_or_replace_an_unfinished_main_code_build():
-    from support_workflows import load_workflow, _expression
+    from support.support_workflows import load_workflow, _expression
 
     workflow = load_workflow(ROOT / '.github/workflows/windows-build.yml')
     concurrency = workflow['concurrency']
@@ -345,7 +345,7 @@ def test_documentation_push_cannot_cancel_or_replace_an_unfinished_main_code_bui
 
 
 def test_every_uv_bootstrap_checks_the_reviewed_platform_archive_bytes():
-    from support_workflows import load_workflow
+    from support.support_workflows import load_workflow
 
     # Official uv 0.13.7 release asset digests, recorded independently of the
     # setup action's remotely resolved release manifest.

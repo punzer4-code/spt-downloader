@@ -2,7 +2,7 @@
 from copy import copy
 import pytest
 
-from support_templates import run_for, section, table
+from support.support_templates import run_for, section, table
 from test_pph21_template import export, row
 
 

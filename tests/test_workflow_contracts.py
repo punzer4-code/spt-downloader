@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def contract():
-    assert importlib.util.find_spec('support_workflows') is not None, 'Structured workflow contracts are missing'
-    return importlib.import_module('support_workflows')
+    assert importlib.util.find_spec('support.support_workflows') is not None, 'Structured workflow contracts are missing'
+    return importlib.import_module('support.support_workflows')
 
 
 def production():

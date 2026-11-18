@@ -235,7 +235,7 @@ Hindari paralelisasi browser yang berbagi sesi atau menaikkan worker pytest tanp
 
 ## Fixture pengujian bersama
 
-Helper yang dipakai lintas modul pengujian berada di `tests/support_*.py`, bukan
+Helper yang dipakai lintas modul pengujian berada di `tests/support/*.py`, bukan
 `test_*.py`. Gunakan owner yang sesuai: data run sintetis, bukti PDF, template,
 protokol browser, laporan build, atau GUI. Modul support tidak berisi tes yang
 ikut dikoleksi dan tidak membuka browser, koneksi, atau window ketika diimpor.

@@ -8,7 +8,7 @@ import pytest
 from coretax_json import JsonSafetyError
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
 from coretax_masa_json import adapt_masa_detail
-from support_json_network import Context, exchange as network_exchange
+from support.support_json_network import Context, exchange as network_exchange
 from test_json_capture import Page, DETAIL_URL, SCOPE
 from test_pph21_reference_capture import selected, exchange, RAW, URL as REFERENCE_URL
 from test_pph21_reference_packets import reference_packet

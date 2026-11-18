@@ -5,7 +5,7 @@ import tkinter as tk
 
 import pytest
 from spt_desktop import app as gui
-from support_gui import Controller, widgets, button
+from support.support_gui import Controller, widgets, button
 
 SATU = 'https://satu.intranet.pajak.go.id'
 CORETAX = 'https://coretax.intranet.pajak.go.id'

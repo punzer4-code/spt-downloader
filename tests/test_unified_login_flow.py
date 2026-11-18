@@ -7,8 +7,8 @@ import pytest
 from coretax_browser import CaptureCancelled
 from spt_desktop import auth, controller, diagnostics, worker
 from spt_desktop.credentials import Login
-from support_login_browser import browser as browser
-from support_login_redirect import Engine, SATU, ACCOUNT, SECRET
+from support.support_login_browser import browser as browser
+from support.support_login_redirect import Engine, SATU, ACCOUNT, SECRET
 
 
 def saved(monkeypatch):

@@ -15,7 +15,7 @@ from openpyxl.cell.cell import MergedCell
 from openpyxl.styles import Border, Color, Side
 import coretax
 import coretax_exporter as exporter
-from support_templates import assert_layout, section, source_run
+from support.support_templates import assert_layout, section, source_run
 
 RESOURCE = Path(__file__).resolve().parents[1] / 'resources/corporate_format.xlsx'
 FORMS = ['L1-D', 'L2', 'L3', 'L4', 'L6', 'L7', 'L9', 'L10-A', 'L10-C',

@@ -11,11 +11,11 @@ from openpyxl import load_workbook
 import coretax
 from coretax_exporter import validate_export_run
 from spt_desktop import output
-from support_financial_browser import browser as browser
-from support_financial_browser import routed as routed, attachments, downloaded, RECORD, DETAIL, PDF_URL, LABEL
-from support_financial_publication import PDF, financial_run
-from support_financial_publication import physical_bytes
-from support_runs import fixture_run
+from support.support_financial_browser import browser as browser
+from support.support_financial_browser import routed as routed, attachments, downloaded, RECORD, DETAIL, PDF_URL, LABEL
+from support.support_financial_publication import PDF, financial_run
+from support.support_financial_publication import physical_bytes
+from support.support_runs import fixture_run
 
 
 def flat_run(folder, count=1):

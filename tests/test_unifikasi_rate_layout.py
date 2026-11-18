@@ -5,7 +5,7 @@ import pytest
 from openpyxl import load_workbook
 
 import coretax_exporter as exporter
-from support_templates import section, source_run
+from support.support_templates import section, source_run
 
 
 HEADERS = [
@@ -123,8 +123,8 @@ def test_bpnr_rate_and_reported_footer_shift_with_body_growth(tmp_path, count):
 
 def test_native_rate_is_on_form_once_and_tax_remains_numeric(tmp_path):
     from coretax_masa_json import adapt_masa_detail
-    from masa_projection_fixture import native_case
-    from support_masa_native import exported
+    from support.masa_projection_fixture import native_case
+    from support.support_masa_native import exported
     case = native_case('PPh Unifikasi', populated=True)
     original = deepcopy(case)
     result = adapt_masa_detail(case['packets'], record=case['record'],

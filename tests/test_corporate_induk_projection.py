@@ -10,7 +10,7 @@ import importlib
 import pytest
 
 from coretax_json import _CorporateNumber, _UnsupportedMetadata, adapt_corporate_detail
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 
 FIELDS = (
     ('HEADER', 'TaxYear', 'Tahun Pajak/Bagian Tahun Pajak'),

@@ -6,7 +6,7 @@ import pytest
 
 from coretax_json import JsonSafetyError, adapt_corporate_detail
 import coretax_corporate_projection as projection
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 from test_corporate_l7_native import selected, envelope, bindings, packet, FRAME, PINS
 from test_corporate_l7_projection import ROOT, BODY, SUFFIXES
 

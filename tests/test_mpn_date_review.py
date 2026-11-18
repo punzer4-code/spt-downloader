@@ -6,7 +6,7 @@ import time
 import pytest
 from playwright.sync_api import Error as PlaywrightError, Locator
 
-from support_isolated_browser import browser as browser
+from support.support_isolated_browser import browser as browser
 from coretax_browser import CaptureCancelled
 from coretax_mpn import MpnSafetyError
 from coretax_mpn_browser import collect_mpn

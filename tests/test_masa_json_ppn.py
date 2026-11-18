@@ -6,7 +6,7 @@ import pytest
 from coretax_json import _corporate_json, _UnsupportedMetadata
 
 
-from support_masa_native import project
+from support.support_masa_native import project
 
 def test_ppn_export_override_uses_a1_total():
     form = _corporate_json('''{"ExportTangibleTaxableGoods":{"SellingPrice":999},

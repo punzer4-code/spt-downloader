@@ -2,7 +2,7 @@
 import pytest
 from coretax_json import JsonSafetyError
 from masa_json_fixtures import SCOPE
-from pph21_observer_fixture import REFERENCE, browser as browser, observed
+from support.pph21_observer_fixture import REFERENCE, browser as browser, observed
 from test_pph21_json_observer import feature, assert_no_values_or_actions
 
 MODEL_REFERENCE = REFERENCE.rsplit('/', 1)[0] + '/RETURN_SHEET_MODEL'
@@ -35,8 +35,8 @@ def test_real_edge_capture_reaches_native_export_without_dom_business_values(bro
     import importlib
     import importlib.util
     import coretax_browser as browser_api
-    from pph21_observer_fixture import MAIN, ARTICLE, BUILD, TOTAL
-    from support_templates import run_for
+    from support.pph21_observer_fixture import MAIN, ARTICLE, BUILD, TOTAL
+    from support.support_templates import run_for
     from test_pph21_template import export
     assert importlib.util.find_spec('coretax_pph21_projection') is not None, 'PPh21 form assembly is not implemented'
     projection = importlib.import_module('coretax_pph21_projection')

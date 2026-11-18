@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright
 
 from coretax_json_capture import DetailJsonCapture
 from masa_json_fixtures import SCOPE
-from masa_observer_fixture import ASSETS, BUILD, FRAME, MAIN, Fixture
+from support.masa_observer_fixture import ASSETS, BUILD, FRAME, MAIN, Fixture
 
 
 def observer_module():
@@ -51,13 +51,13 @@ def observed(browser, tmp_path, monkeypatch, tax='PPN', *, defect=None, layout='
 
 from openpyxl import load_workbook
 import coretax_exporter as exporter
-from support_templates import run_for
+from support.support_templates import run_for
 
 
 def exported(tmp_path, tax, sections):
     run = run_for(sections)
     run['records'][0]['meta']['Jenis Pajak'] = tax
-    from support_masa_binding import reference_geometry
+    from support.support_masa_binding import reference_geometry
     with reference_geometry():
         files = exporter.export_split_workbooks(run, tmp_path)
     return load_workbook(tmp_path / next(f for f in files if f != 'resume.xlsx'))

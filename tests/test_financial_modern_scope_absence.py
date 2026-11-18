@@ -1,10 +1,10 @@
 """Synthetic, runner-only REAL_SCAN regressions for lost local collection binding."""
 import pytest
 
-from support_financial_browser import browser as browser
-from support_financial_browser import attachments
-from support_financial_modern import CURRENT_LABEL
-from support_financial_post import post_routed as post_routed
+from support.support_financial_browser import browser as browser
+from support.support_financial_browser import attachments
+from support.support_financial_modern import CURRENT_LABEL
+from support.support_financial_post import post_routed as post_routed
 from test_financial_modern_label_scope import (
     assert_common_owner_layout,
     assert_no_click_or_wire,

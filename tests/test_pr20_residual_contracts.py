@@ -45,7 +45,7 @@ def test_zero_only_body_row_is_not_confused_with_blank_or_footer():
 
 def test_unifikasi_induk_wrong_footer_spans_remain_unmapped(tmp_path):
     """Retain the old safety scenario, not its obsolete row-27/string-money layout."""
-    from support_templates import section
+    from support.support_templates import section
     from test_unifikasi_dom_repair import HEADERS, export, source_table
 
     footer = [['TOTAL OF INCOME TAX', '31', '37', '41', '43', '47', '53']]

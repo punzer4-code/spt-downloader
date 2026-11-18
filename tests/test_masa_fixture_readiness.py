@@ -3,8 +3,8 @@ import pytest
 
 from coretax_json import JsonSafetyError, ORIGIN
 from masa_json_fixtures import SCOPE
-from masa_observer_fixture import FRAME, Fixture
-from support_masa_native import browser as browser, observed
+from support.masa_observer_fixture import FRAME, Fixture
+from support.support_masa_native import browser as browser, observed
 
 
 @pytest.mark.parametrize('tax,defect,status', [

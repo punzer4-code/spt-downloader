@@ -3,7 +3,7 @@ from copy import deepcopy
 
 import pytest
 
-from support_gui import button, named_widget, window
+from support.support_gui import button, named_widget, window
 
 
 LABELS = ('All', 'Pemb. Terakhir', 'PPh Potput', 'PPN')

@@ -4,7 +4,7 @@ from greenlet import greenlet, getcurrent
 import pytest
 
 import coretax_browser as driver
-from support_browser_protocol import LIST_URL, RECORD, SourcePage, response
+from support.support_browser_protocol import LIST_URL, RECORD, SourcePage, response
 from test_list_view_custody import deferred_page
 
 

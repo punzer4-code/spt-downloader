@@ -8,7 +8,7 @@ import pytest
 import coretax_json as adapter
 from coretax_json import JsonSafetyError
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
-from support_json_network import exchange
+from support.support_json_network import exchange
 from test_corporate_component_lifetime import setup, selected, begin, navigate, LIST, DETAIL, SCOPE
 from test_corporate_l8_native import lifetime
 

@@ -8,12 +8,12 @@ import coretax_browser as driver
 from coretax_corporate import observe_forms
 from coretax_json import JsonSafetyError, adapt_corporate_detail
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
-from l8_observer_fixture import Fixture
-from l1d_observer_fixture import ASSET
+from support.l8_observer_fixture import Fixture
+from support.l1d_observer_fixture import ASSET
 from test_corporate_l1d_observer import open_selected
 from test_json_hybrid_native import browser as browser
 from test_corporate_l8_native import DETAIL
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 
 
 def history(capture, check_cancel=None):

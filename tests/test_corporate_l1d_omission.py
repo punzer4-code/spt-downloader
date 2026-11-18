@@ -13,7 +13,7 @@ import openpyxl
 import coretax
 import coretax_corporate_projection as projection
 import coretax_json as native_json
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 import test_corporate_l1d_native as l1d_native
 import test_corporate_l1d_projection as l1d_source
 import test_corporate_l7_native as l7_native

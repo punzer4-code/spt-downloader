@@ -4,8 +4,8 @@ import hashlib
 import pytest
 
 from masa_json_fixtures import SCOPE
-from masa_observer_fixture import ASSETS, FORMS, MAIN, Fixture
-from support_masa_native import browser as browser, observed
+from support.masa_observer_fixture import ASSETS, FORMS, MAIN, Fixture
+from support.support_masa_native import browser as browser, observed
 
 
 @pytest.mark.parametrize(

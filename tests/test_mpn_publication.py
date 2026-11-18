@@ -129,7 +129,7 @@ def test_full_empty_spt_job_publishes_mpn_and_one_relative_resume_link(tmp_path)
 
 
 def test_mpn_partial_preserves_verified_spt_and_cannot_promote_complete(tmp_path):
-    from support_runs import fixture_run
+    from support.support_runs import fixture_run
     import coretax
     run = fixture_run()
     run['mpn'] = mpn_run(complete=False)['mpn']
@@ -190,7 +190,7 @@ def test_changed_private_mpn_evidence_blocks_publication_before_downloads(monkey
 
 def mpn_replacement(tmp_path):
     import coretax
-    from support_runs import fixture_run
+    from support.support_runs import fixture_run
     from spt_desktop import output
     run = fixture_run()
     run['mpn'] = mpn_run()['mpn']

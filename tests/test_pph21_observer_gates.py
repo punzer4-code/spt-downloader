@@ -8,7 +8,7 @@ import hashlib
 import importlib
 
 from masa_json_fixtures import SCOPE, TAXPAYER, selected
-from pph21_observer_fixture import MAIN, ARTICLE, browser  # noqa: F401  (browser unused; kept for parity)
+from support.pph21_observer_fixture import MAIN, ARTICLE, browser  # noqa: F401  (browser unused; kept for parity)
 from spt_desktop import diagnostics
 from test_diagnostics import records
 

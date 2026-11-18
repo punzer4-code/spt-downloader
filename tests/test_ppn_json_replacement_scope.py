@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from masa_projection_fixture import field
+from support.masa_projection_fixture import field
 from test_ppn_json_amendment import amend_case, decode, reseal
 
 REPLACEMENT = {

@@ -2,10 +2,10 @@
 from copy import deepcopy
 import inspect
 import coretax_browser as driver
-import support_browser_protocol as protocol
-import support_financial_evidence as financial
-import support_json_corpus as corpus
-import support_json_network as network
+import support.support_browser_protocol as protocol
+import support.support_financial_evidence as financial
+import support.support_json_corpus as corpus
+import support.support_json_network as network
 
 
 PRIMARY_REQUEST = {'RecordId': corpus.RECORD_ID, 'OnManualClick': False}

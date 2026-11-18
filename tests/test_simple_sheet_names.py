@@ -8,7 +8,7 @@ from openpyxl import load_workbook
 
 import coretax
 import coretax_exporter as exporter
-from support_runs import fixture_run, unifikasi_induk_table
+from support.support_runs import fixture_run, unifikasi_induk_table
 
 
 def form_run(names=('Induk', 'L-IA'), *, amendments=False):

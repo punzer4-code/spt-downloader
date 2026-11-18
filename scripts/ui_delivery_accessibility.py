@@ -25,7 +25,7 @@ def main():
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tests'))
     import tkinter as tk
-    from support_gui import ConsentController, consent_event
+    from support.support_gui import ConsentController, consent_event
     from spt_desktop.app import App
     from spt_desktop.ui_theme import client_work_area, effective_scale
 

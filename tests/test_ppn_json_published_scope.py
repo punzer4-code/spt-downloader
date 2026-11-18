@@ -4,7 +4,7 @@ Omissions must be named in coverage. Unknown controls still force fallback.
 """
 import pytest
 
-from masa_projection_fixture import field
+from support.masa_projection_fixture import field
 from test_ppn_json_amendment import amend_case, decode
 
 TEXT_OMISSIONS = [

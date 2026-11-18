@@ -4,9 +4,9 @@ from copy import copy, deepcopy
 import pytest
 from openpyxl import load_workbook
 
-from support_templates import assert_format, section
+from support.support_templates import assert_format, section
 
-from support_templates import APPENDICES, RAW_MARKER, RESOURCE, export_ppn, source_appendix
+from support.support_templates import APPENDICES, RAW_MARKER, RESOURCE, export_ppn, source_appendix
 
 # form, header, first body row, original total row, monetary columns
 @pytest.mark.parametrize('case', APPENDICES, ids=[x[0] for x in APPENDICES])

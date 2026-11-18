@@ -5,7 +5,7 @@ import pytest
 
 import coretax_json
 from masa_json_fixtures import SCOPE
-from pph21_observer_fixture import browser as browser
+from support.pph21_observer_fixture import browser as browser
 
 VENDOR_BUILD = b'/* SYNTHETIC ORDER VENDOR -- no portal code */'
 
@@ -29,7 +29,7 @@ def test_reference_order_build_valid_pin_missing_asset_stays_no_proof(monkeypatc
 def non_script_asset(fixture, vendor):
     if vendor not in ('fetch-only', 'preload-only'):
         return
-    from pph21_observer_fixture import VENDOR
+    from support.pph21_observer_fixture import VENDOR
     fixture.vendor = VENDOR_BUILD
     fixture.page.evaluate('''async ({url, mode}) => {
       if(mode === 'fetch-only') { await (await fetch(url)).arrayBuffer(); return; }
@@ -57,7 +57,7 @@ def test_optional_induk_proof_requires_loaded_digest_without_business_reads(
            VENDOR_BUILD + (b'/* CHANGED */' if vendor == 'changed' else b''))
     requests = [] if vendor == 'missing' else ['GET'] if vendor in ('fetch-only', 'preload-only') else ['GET', 'GET']
     if family == 'pph21':
-        from pph21_observer_fixture import observed
+        from support.pph21_observer_fixture import observed
         from test_pph21_json_observer import feature, assert_no_values_or_actions
         observer = feature(monkeypatch)
         with observed(browser, tmp_path, native=True, vendor=raw) as (fixture, capture):
@@ -68,8 +68,8 @@ def test_optional_induk_proof_requires_loaded_digest_without_business_reads(
             assert_no_values_or_actions(fixture)
             assert fixture.vendor_requests == requests
     else:
-        from support_masa_native import observed
-        from unifikasi_observer_fixture import NativeFixture
+        from support.support_masa_native import observed
+        from support.unifikasi_observer_fixture import NativeFixture
         monkeypatch.setattr('support_masa_native.Fixture', NativeFixture)
         with observed(browser, tmp_path, monkeypatch, 'PPh Unifikasi', vendor=raw) as (module, fixture, capture):
             non_script_asset(fixture, vendor)

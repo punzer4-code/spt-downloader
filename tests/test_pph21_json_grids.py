@@ -8,7 +8,7 @@ import pytest
 
 from coretax_json import JsonSafetyError, _UnsupportedMetadata, _corporate_json
 from masa_json_fixtures import RECORD, FOREIGN, page
-from support_pph21_dom import appendix_table
+from support.support_pph21_dom import appendix_table
 
 GRIDS = [('l1a', 'L-IA', 'LIST-IA'), ('l1b-bpa1', 'L-IB', 'BPA1'),
          ('l1b-bpa2', 'L-IB', 'BPA2'), ('l2-bpa1', 'L-II', 'BPA1'),

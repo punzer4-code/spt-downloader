@@ -3,10 +3,10 @@ from copy import deepcopy
 
 import pytest
 
-from support_financial_browser import browser as browser, routed as routed
-from support_financial_browser import DETAIL, PDF_URL, RECORD, attachments, downloaded
-from support_financial_modern import CURRENT_LABEL, modern_content
-from support_financial_post import post_routed as post_routed
+from support.support_financial_browser import browser as browser, routed as routed
+from support.support_financial_browser import DETAIL, PDF_URL, RECORD, attachments, downloaded
+from support.support_financial_modern import CURRENT_LABEL, modern_content
+from support.support_financial_post import post_routed as post_routed
 
 
 def scan(page):

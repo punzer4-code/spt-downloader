@@ -4,10 +4,10 @@ import json
 
 import pytest
 import coretax_browser as driver
-from support_isolated_browser import browser as browser
+from support.support_isolated_browser import browser as browser
 from test_json_inventory import synthetic_listing_browser
 from test_diagnostics import records as log_records
-from support_browser_protocol import capture_failures
+from support.support_browser_protocol import capture_failures
 
 
 def inventory(page, folder):

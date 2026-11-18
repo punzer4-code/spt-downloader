@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from types import SimpleNamespace
 import pytest
-from support_runs import fixture_run
+from support.support_runs import fixture_run
 
 
 def worker():
@@ -13,7 +13,7 @@ def worker():
     return importlib.import_module('spt_desktop.worker')
 
 
-from support_selected_capture import (
+from support.support_selected_capture import (
     synthetic_browser
 )
 

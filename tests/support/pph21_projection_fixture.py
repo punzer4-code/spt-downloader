@@ -6,8 +6,8 @@ from coretax_json import ORIGIN
 from masa_json_fixtures import RECORD, packet
 from test_pph21_json_primary import TAX, case as primary_case
 from test_pph21_json_grids import GRIDS, LOOKUPS, fixture as grid_fixture
-from support_pph21_dom import appendix_table, induk_tables
-from pph21_observer_fixture import INDUK_CONTROLS
+from support.support_pph21_dom import appendix_table, induk_tables
+from support.pph21_observer_fixture import INDUK_CONTROLS
 
 MAIN = ORIGIN + '/returnsheets/id-ID/main.bed1449c3647a8ca.js'
 ARTICLE = ORIGIN + '/returnsheets/id-ID/803.3216dd51e4f24bf3.js'

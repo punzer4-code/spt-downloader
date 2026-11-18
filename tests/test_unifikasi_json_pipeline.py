@@ -8,7 +8,7 @@ import sys
 
 import pytest
 from coretax_masa_json import adapt_masa_detail
-from unifikasi_projection_fixture import case
+from support.unifikasi_projection_fixture import case
 
 
 @pytest.mark.parametrize('populated', [False, True])

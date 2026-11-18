@@ -5,7 +5,7 @@ import json
 import pytest
 
 import coretax_browser as source_browser
-from support_financial_browser import DETAIL, LABEL, ORIGIN, PDF, attachments
+from support.support_financial_browser import DETAIL, LABEL, ORIGIN, PDF, attachments
 
 
 ENDPOINT = ORIGIN + '/documentmanagement/api/download'

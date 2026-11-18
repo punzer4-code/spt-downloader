@@ -7,7 +7,7 @@ from playwright.sync_api import ElementHandle, Locator, TimeoutError as BrowserT
 
 import coretax_browser as driver
 import coretax_corporate as native
-from support_isolated_browser import browser as browser, context as context
+from support.support_isolated_browser import browser as browser, context as context
 from test_diagnostics import records
 from spt_desktop import diagnostics
 from test_pagination_actionability import fixture

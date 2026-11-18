@@ -9,11 +9,11 @@ from openpyxl import load_workbook
 
 from coretax_masa_json import adapt_masa_detail
 from masa_json_fixtures import SCOPE, RECORD
-from pph21_projection_fixture import case, REFERENCE
-from support_templates import run_for
+from support.pph21_projection_fixture import case, REFERENCE
+from support.support_templates import run_for
 from test_dated_reference_catalogs import CLOCK
 from test_pph21_template import export
-from pph21_observer_fixture import browser as browser
+from support.pph21_observer_fixture import browser as browser
 from test_reference_order_safety import VENDOR_SHA
 
 VENDOR_BUILD = b'/* SYNTHETIC ORDER VENDOR -- no portal code */'
@@ -95,7 +95,7 @@ def test_real_edge_clock_and_dated_response_reach_native_workbook_without_dom_va
     import coretax_browser as driver
     import coretax_pph21_projection as projection
     import coretax_json
-    from pph21_observer_fixture import MAIN, ARTICLE, BUILD, observed
+    from support.pph21_observer_fixture import MAIN, ARTICLE, BUILD, observed
     from test_pph21_json_observer import feature, assert_no_values_or_actions
     monkeypatch.setattr(projection, 'BUILD_DIGESTS', {
         MAIN: hashlib.sha256(BUILD).hexdigest(), ARTICLE: hashlib.sha256(BUILD).hexdigest()})
@@ -135,8 +135,8 @@ def test_real_edge_clock_and_dated_response_reach_native_workbook_without_dom_va
 
 @pytest.mark.parametrize('model', ['Normal', 'Amendment 002'])
 def test_dated_unifikasi_catalogs_reach_all_forms_and_preserve_period_dropdown(tmp_path, model):
-    from unifikasi_projection_fixture import case as unifikasi_case, URL
-    from support_masa_native import exported
+    from support.unifikasi_projection_fixture import case as unifikasi_case, URL
+    from support.support_masa_native import exported
     fixture = unifikasi_case(model=model)
     next(form for form in fixture['forms'] if form['name'] == 'INDUK')['reference_order_build'] = VENDOR_SHA
     # The projection-only fixture uses placeholder headings for these three

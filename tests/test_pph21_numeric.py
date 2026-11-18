@@ -5,9 +5,9 @@ from decimal import Decimal
 import pytest
 from openpyxl import load_workbook
 
-from support_masa_binding import render_pph21_binding as render_template_form
-from support_pph21_dom import appendix_table, induk_tables, observed
-from support_templates import assert_format
+from support.support_masa_binding import render_pph21_binding as render_template_form
+from support.support_pph21_dom import appendix_table, induk_tables, observed
+from support.support_templates import assert_format
 from test_pph21_template import REFERENCE
 
 GROUPS = [('L-IA', 'LIST-IA', 5, 16, 9), ('L-IB', 'BPA1', 6, None, 8),

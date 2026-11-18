@@ -4,11 +4,11 @@ from copy import deepcopy
 import pytest
 from openpyxl import load_workbook
 
-from support_masa_binding import render_pph21_binding as render_template_form
-from support_templates import cells_with, section
-from support_pph21_dom import appendix_table
+from support.support_masa_binding import render_pph21_binding as render_template_form
+from support.support_templates import cells_with, section
+from support.support_pph21_dom import appendix_table
 from test_pph21_template import REFERENCE
-from support_pph21_numeric import money
+from support.support_pph21_numeric import money
 
 IDENTITY = 'A. IDENTITAS PEMOTONG'
 DECLARATION = 'D. PERNYATAAN DAN TANDA TANGAN'

@@ -4,7 +4,7 @@ import pytest
 
 
 
-from support_gui import named_widget, button, consent_event, widgets, window
+from support.support_gui import named_widget, button, consent_event, widgets, window
 
 def select_first(root, dialog):
     tree = next(widget for widget in widgets(dialog) if widget.winfo_class() == 'Treeview')

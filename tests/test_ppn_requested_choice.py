@@ -1,9 +1,9 @@
 """Selected PPN refund controls; synthetic DOM, no network or taxpayer data."""
 import pytest
-from support_isolated_browser import browser as browser, isolated_context
+from support.support_isolated_browser import browser as browser, isolated_context
 import coretax_browser as driver
-from support_templates import section
-from support_templates import export_ppn
+from support.support_templates import section
+from support.support_templates import export_ppn
 
 CHOICES = [('CARRY_FORWARD', '1. dikompensasikan'),
            ('FAST_REFUND', '2. dikembalikan melalui pengembalian pendahuluan'),

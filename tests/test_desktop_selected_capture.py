@@ -4,11 +4,11 @@ from pathlib import Path
 import pytest
 
 from spt_desktop import worker, output
-from support_runs import fixture_run
-from support_selected_capture import synthetic_browser
+from support.support_runs import fixture_run
+from support.support_selected_capture import synthetic_browser
 
 
-from support_selected_capture import (
+from support.support_selected_capture import (
     selected_job
 )
 

@@ -3,8 +3,8 @@ import json
 import pytest
 from spt_desktop import auth, diagnostics
 from spt_desktop.credentials import Login
-from support_login_browser import browser as browser
-from support_login_redirect import SATU, ACCOUNT, SECRET, ENTRY, Engine
+from support.support_login_browser import browser as browser
+from support.support_login_redirect import SATU, ACCOUNT, SECRET, ENTRY, Engine
 
 
 def run_download_login(browser, tmp_path, monkeypatch, *, mode='success', entry=ENTRY):

@@ -7,7 +7,7 @@ import pytest
 
 from coretax_json_capture import DetailJsonCapture
 from spt_desktop import diagnostics as d
-from support_json_network import exchange
+from support.support_json_network import exchange
 from test_corporate_component_lifetime import begin, navigate, selected, DETAIL, SCOPE
 from test_corporate_l7_history import Element, history_setup
 from test_diagnostics import records

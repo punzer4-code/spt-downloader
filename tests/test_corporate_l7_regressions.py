@@ -6,7 +6,7 @@ from openpyxl import load_workbook
 
 import coretax
 from coretax_json import _UnsupportedMetadata, _corporate_json, adapt_corporate_detail
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 from test_corporate_l7_projection import BODY, ROOT, SUFFIXES, raw_source, project
 from test_corporate_l7_native import selected, envelope, packet, bindings
 

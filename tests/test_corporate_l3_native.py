@@ -7,7 +7,7 @@ from openpyxl import load_workbook
 import coretax
 import coretax_browser as driver
 from coretax_json import JsonSafetyError, adapt_corporate_detail
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 from test_corporate_l7_native import bindings as old_bindings, selected
 from test_corporate_l11c_native import L11C_PINS
 from test_corporate_l1d_native import DETAIL, packet as fresh_packet

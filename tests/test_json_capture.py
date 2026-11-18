@@ -18,7 +18,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from support_json_network import (
+from support.support_json_network import (
     API_URL, Context, Frame, ORIGIN, RAW, Request, Response, Signals, exchange
 )
 

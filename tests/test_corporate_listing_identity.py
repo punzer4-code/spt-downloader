@@ -5,10 +5,10 @@ from types import SimpleNamespace
 import pytest
 import coretax_browser as driver
 from coretax_json import adapt_inventory_page
-import support_browser_protocol as protocol
-import support_json_corpus as corpus
-from support_json_hybrid import Scenario
-from support_json_network import Request
+import support.support_browser_protocol as protocol
+import support.support_json_corpus as corpus
+from support.support_json_hybrid import Scenario
+from support.support_json_network import Request
 from test_json_inventory import api_row, context
 
 

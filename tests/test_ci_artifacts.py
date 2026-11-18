@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 from spt_desktop.runtime import WORKER_FILES, python_version
-from support_build_reports import sorting_report
+from support.support_build_reports import sorting_report
 
 
 def verifier():
@@ -294,7 +294,7 @@ def test_provenance_verification_binds_repository_workflow_main_sha_and_hosted_r
 def test_durable_rollback_retains_provenance_for_the_original_archive_digest():
     module = delivery_module('ci_release')
     assert module.ARCHIVE in module.SUBJECTS
-    from support_workflows import load_workflow
+    from support.support_workflows import load_workflow
     workflow = load_workflow(Path(__file__).resolve().parents[1] / '.github/workflows/windows-build.yml')
     assert workflow['jobs']['package']['outputs']['artifact_digest'] == '${{ steps.upload.outputs.artifact-digest }}'
     steps = [step for step in workflow['jobs']['attest']['steps']
@@ -536,7 +536,7 @@ def test_native_sbom_validation_recognizes_exact_tcl9_tk_library(artifact, tk_na
 
 
 def test_release_promotion_workflow_is_opt_in_read_only_until_explicit_publish():
-    from support_workflows import load_workflow, _expression
+    from support.support_workflows import load_workflow, _expression
 
     path = Path(__file__).resolve().parents[1] / '.github/workflows/release-promotion.yml'
     assert path.is_file(), 'Durable verified release promotion workflow is missing'
@@ -556,7 +556,7 @@ def test_release_promotion_workflow_is_opt_in_read_only_until_explicit_publish()
 
 def test_release_dispatch_threads_the_exact_source_python_version_through_both_jobs():
     import shlex
-    from support_workflows import load_workflow, _expression
+    from support.support_workflows import load_workflow, _expression
 
     path = Path(__file__).resolve().parents[1] / '.github/workflows/release-promotion.yml'
     workflow = load_workflow(path)

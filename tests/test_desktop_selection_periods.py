@@ -3,7 +3,7 @@ from copy import deepcopy
 
 import pytest
 
-from support_gui import button, named_widget, widgets, window
+from support.support_gui import button, named_widget, widgets, window
 
 
 def inventory(rows):

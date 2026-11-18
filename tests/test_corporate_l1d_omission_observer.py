@@ -8,11 +8,11 @@ import coretax
 import coretax_corporate as observer
 from coretax_json import adapt_corporate_detail
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
-from l1d_observer_fixture import Fixture, ASSET
+from support.l1d_observer_fixture import Fixture, ASSET
 from test_corporate_l1d_native import DETAIL
 from test_corporate_l1d_observer import open_selected
 from test_json_hybrid_native import browser as browser
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 
 LAYOUT = 'absent-5322-34x10-v1'
 

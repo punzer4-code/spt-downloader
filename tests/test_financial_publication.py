@@ -10,9 +10,9 @@ from openpyxl import load_workbook
 
 import coretax
 from spt_desktop import output
-from support_runs import fixture_run
+from support.support_runs import fixture_run
 
-from support_financial_publication import (
+from support.support_financial_publication import (
     CHANGED_PDF, PDF, declare_pdf, financial_run
 )
 

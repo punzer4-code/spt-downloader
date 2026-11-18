@@ -13,7 +13,7 @@ from openpyxl import load_workbook
 
 import coretax
 import coretax_exporter as exporter
-from support_runs import model_run
+from support.support_runs import model_run
 
 
 GOLDEN = json.loads(

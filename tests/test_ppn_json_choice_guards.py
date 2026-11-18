@@ -10,7 +10,7 @@ from openpyxl import load_workbook
 import coretax
 from coretax_json import JsonSafetyError, _UnsupportedMetadata, _corporate_json
 from coretax_masa_bindings import project_ppn_asked_to
-from masa_projection_fixture import native_case
+from support.masa_projection_fixture import native_case
 from test_ppn_json_amendment import amend_case, decode, reseal
 from test_ppn_json_surface import CHOICES
 from test_ppn_json_vat_balance import raw_source as balance_source

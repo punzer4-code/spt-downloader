@@ -2,7 +2,7 @@
 from copy import deepcopy
 import json
 
-from support_gui import window, widgets, button
+from support.support_gui import window, widgets, button
 
 
 def payload(rows):

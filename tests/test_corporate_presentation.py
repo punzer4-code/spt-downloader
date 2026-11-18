@@ -6,7 +6,7 @@ import pytest
 from openpyxl import Workbook, load_workbook
 import coretax
 import coretax_exporter as exporter
-from support_templates import source_run, section
+from support.support_templates import source_run, section
 
 
 def source():

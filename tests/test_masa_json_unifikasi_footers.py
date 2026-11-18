@@ -92,7 +92,7 @@ def test_unknown_footer_scope_is_not_a_blank_complete_result(grid, form):
 def test_footer_layout_distinguishes_no_footer_grid_from_spacer_grids():
     from copy import deepcopy
     from coretax_masa_json import adapt_masa_detail
-    from masa_projection_fixture import native_case
+    from support.masa_projection_fixture import native_case
 
     case = native_case('PPh Unifikasi')
     result = adapt_masa_detail(case['packets'], record=case['record'],

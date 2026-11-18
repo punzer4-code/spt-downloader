@@ -5,9 +5,9 @@ import json
 import pytest
 
 import coretax_browser as driver
-from support_browser_protocol import DETAIL_URL, LIST_URL, META, RECORD, TAXPAYER, run_fixture
-from support_isolated_browser import browser as browser, context as context
-from support_browser_protocol import capture_failures
+from support.support_browser_protocol import DETAIL_URL, LIST_URL, META, RECORD, TAXPAYER, run_fixture
+from support.support_isolated_browser import browser as browser, context as context
+from support.support_browser_protocol import capture_failures
 
 
 @pytest.mark.parametrize('case', ['recover', 'missing', 'http403', 'application_error'])

@@ -18,7 +18,7 @@ import coretax
 import coretax_exporter as exporter
 import coretax_json as native
 
-from support_json_corpus import FOREIGN_ID, FRAME_URL, NPWP, Number, ORIGIN, PRIMARY_URL, RECORD_ID, SCOPE, current_form, observed, packet, primary, request, selected_record, source_row, wire
+from support.support_json_corpus import FOREIGN_ID, FRAME_URL, NPWP, Number, ORIGIN, PRIMARY_URL, RECORD_ID, SCOPE, current_form, observed, packet, primary, request, selected_record, source_row, wire
 
 GRID_URL = ORIGIN + '/returnsheet/api/loadcit/l3-table-b-grid'
 FOOTER_URL = GRID_URL + '/footer'

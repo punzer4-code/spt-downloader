@@ -1,8 +1,8 @@
 """Synthetic runner-only regression for the reviewed single-icon action shape."""
-from support_financial_browser import browser as browser
-from support_financial_browser import attachments
-from support_financial_modern import CURRENT_LABEL, modern_content
-from support_financial_post import post_routed as post_routed
+from support.support_financial_browser import browser as browser
+from support.support_financial_browser import attachments
+from support.support_financial_modern import CURRENT_LABEL, modern_content
+from support.support_financial_post import post_routed as post_routed
 
 
 def test_modern_action_rejects_an_extra_non_pi_icon_after_valid_admission(post_routed):

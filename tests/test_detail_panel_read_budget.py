@@ -10,10 +10,10 @@ from types import SimpleNamespace
 import pytest
 
 import coretax_browser as driver
-from support_financial_browser import browser as browser
-from support_financial_browser import RECORD, downloaded
-from support_financial_post import ENDPOINT
-from support_financial_post import post_routed as post_routed
+from support.support_financial_browser import browser as browser
+from support.support_financial_browser import RECORD, downloaded
+from support.support_financial_post import ENDPOINT
+from support.support_financial_post import post_routed as post_routed
 from test_diagnostics import records as diagnostic_records
 from test_financial_actual_route import DETAIL, record
 

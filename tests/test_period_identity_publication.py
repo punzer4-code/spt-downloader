@@ -6,8 +6,8 @@ import pytest
 import coretax
 from coretax_exporter import read_workbook_proof
 from spt_desktop import output
-from support_runs import fixture_run
-from support_financial_publication import CHANGED_PDF, declare_pdf
+from support.support_runs import fixture_run
+from support.support_financial_publication import CHANGED_PDF, declare_pdf
 from test_financial_publication import assert_audit_targets
 
 

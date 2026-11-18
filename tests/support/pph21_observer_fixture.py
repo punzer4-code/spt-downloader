@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright
 from coretax_json import ORIGIN
 from coretax_json_capture import DetailJsonCapture
 from masa_json_fixtures import FOREIGN, RECORD, SCOPE, TAXPAYER, selected
-from support_pph21_dom import appendix_table, induk_tables
+from support.support_pph21_dom import appendix_table, induk_tables
 
 MAIN = ORIGIN + '/returnsheets/id-ID/main.bed1449c3647a8ca.js'
 ARTICLE = ORIGIN + '/returnsheets/id-ID/803.3216dd51e4f24bf3.js'
@@ -45,7 +45,7 @@ class Fixture:
         self.record = selected('PPh Pasal 21/26')
         self.source_packets = {}
         if native:
-            from pph21_projection_fixture import case
+            from support.pph21_projection_fixture import case
             self.record, packets, _ = case()
             self.source_packets = {p['context']['url']: p['body'] for p in packets}
         self.unexpected = []

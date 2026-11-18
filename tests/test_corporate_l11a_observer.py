@@ -9,10 +9,10 @@ import coretax_browser as driver
 from coretax_corporate import observe_forms
 from coretax_json import JsonSafetyError, adapt_corporate_detail
 from coretax_json_capture import DetailJsonCapture, checkpoint_bodies
-from l11a_observer_fixture import Fixture, ASSET
+from support.l11a_observer_fixture import Fixture, ASSET
 from test_corporate_l11a_native import DETAIL, GRIDS, OWNERS, GROUPS
 from test_json_hybrid_native import browser as browser
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 
 
 def open_selected(fixture, capture):

@@ -1,9 +1,9 @@
 """Owned colspan proof must resolve headings without fabricating money cells."""
 from copy import deepcopy
 import pytest
-from support_templates import section
+from support.support_templates import section
 from test_corporate_compact_export import export
-from support_l8_spans import source
+from support.support_l8_spans import source
 
 
 def test_owned_l8_spans_export_all_rows_and_captured_footer(tmp_path):

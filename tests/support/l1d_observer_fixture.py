@@ -8,7 +8,7 @@ from test_corporate_l1d_native import DETAIL, envelope, current_classification_e
 from test_corporate_l1d_projection import HEADERS
 from test_corporate_l7_native import ASSET, BUILD, MAIN, MAIN_BUILD, selected
 from test_corporate_l11c_native import VENDOR, VENDOR_BUILD
-import support_json_corpus as corpus
+import support.support_json_corpus as corpus
 
 
 class Fixture:

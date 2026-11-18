@@ -3,12 +3,12 @@ from copy import deepcopy
 import json
 
 import pytest
-from support_isolated_browser import browser as browser
+from support.support_isolated_browser import browser as browser
 import coretax_browser as driver
 from spt_desktop import diagnostics as d
 from test_diagnostics import records as log_records
 from test_json_inventory import synthetic_listing_browser
-from support_browser_protocol import capture_failures
+from support.support_browser_protocol import capture_failures
 
 
 @pytest.mark.parametrize('expired', [False, True])

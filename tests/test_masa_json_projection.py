@@ -10,9 +10,9 @@ import pytest
 
 from coretax_json import JsonSafetyError
 from coretax_masa_json import adapt_masa_detail
-from masa_projection_fixture import MAIN, native_case, response
-from support_masa_native import exported
-from support_templates import assert_format
+from support.masa_projection_fixture import MAIN, native_case, response
+from support.support_masa_native import exported
+from support.support_templates import assert_format
 from openpyxl import load_workbook
 
 
